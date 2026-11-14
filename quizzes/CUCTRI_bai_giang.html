@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOÁN ANH KIÊN - 0987 473 509</title>
+    <style>
+        * { box-sizing: border-box; }
+        [hidden] { display: none !important; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #f7fbff; color: #1c2b3a; line-height: 1.6; padding-bottom: 72px; }
+
+        .topbar { position: sticky; top: 0; z-index: 50; background: #1e88e5; color: #fff; padding: 8px 14px; box-shadow: 0 2px 6px rgba(30,136,229,.25); }
+        .topbar .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; max-width: 860px; margin: auto; }
+        .topbar h1 { margin: 0; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1 1 200px; min-width: 0; }
+        .tools { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tbtn { background: #fff; color: #1565c0; border: none; border-radius: 4px; padding: 5px 12px; font-weight: bold; cursor: pointer; font-size: 13px; white-space: nowrap; }
+        .tbtn:hover { background: #e3f0fb; }
+
+        main { max-width: 860px; margin: auto; padding: 14px; }
+        mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        .lz { margin: 0 0 12px; }
+        .txt { margin: 8px 0; }
+
+        /* ---- tiêu đề ---- */
+        h2.hd1 { color: #1565c0; border-bottom: 3px solid #b3d4fc; padding-bottom: 6px; margin: 30px 0 12px; font-size: 21px; }
+        h3.hd2 { color: #1565c0; border-bottom: 2px solid #b3d4fc; padding-bottom: 4px; margin: 24px 0 10px; font-size: 18px; }
+        h4.hd3 { color: #0d47a1; margin: 20px 0 8px; font-size: 16px; }
+        .hd { scroll-margin-top: 104px; }
+
+        /* ---- khung lý thuyết ---- */
+        .box { border: 2px solid var(--bc, #b3d4fc); background: var(--bg, #eef6fc); border-radius: 8px; margin: 12px 0; overflow: hidden; }
+        .box .bh { background: var(--bc, #b3d4fc); color: var(--fg, #0d47a1); font-weight: bold; padding: 5px 12px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+        .box .bsub { font-weight: normal; }
+        .box .bb { padding: 8px 14px; overflow-x: auto; }
+        .box .box { margin: 8px 0; }
+        .box .bb > .tp:first-child { margin-top: 2px; }
+        .k-def  { --bc: #b3d4fc; --bg: #eef6fc; --fg: #0d47a1; }
+        .k-thm  { --bc: #c5b3f5; --bg: #f5f1fe; --fg: #3b1e8a; }
+        .k-note { --bc: #ffe08a; --bg: #fffbea; --fg: #7a5600; }
+        .k-warn { --bc: #ffb4a8; --bg: #fff3f0; --fg: #9a2410; }
+        .k-key  { --bc: #a5dfb5; --bg: #f0fbf3; --fg: #14602b; }
+        .k-sum  { --bc: #9ed8e3; --bg: #eefafc; --fg: #0b5563; }
+        .k-try  { --bc: #f5c18c; --bg: #fff6ec; --fg: #8a4a00; }
+        .k-ask  { --bc: #d5d5d5; --bg: #f7f7f7; --fg: #333; }
+
+        /* ---- dạng toán ---- */
+        .dang { border: 2px solid #1e88e5; border-radius: 8px; margin: 22px 0 12px; background: #fff; overflow: hidden; scroll-margin-top: 104px; }
+        .dang .dh { background: #1e88e5; color: #fff; padding: 7px 14px; font-weight: bold; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+        .dang .dno { background: #fff; color: #1565c0; border-radius: 12px; padding: 0 10px; white-space: nowrap; }
+        .dang .db { padding: 8px 14px; overflow-x: auto; }
+
+        /* ---- ví dụ / câu hỏi ---- */
+        .q { background: #fff; border: 2px solid #b3d4fc; border-radius: 8px; padding: 12px 14px; margin: 14px 0; overflow-x: auto; }
+        .q.s-correct { border-color: #28a745; }
+        .q.s-wrong { border-color: #dc3545; }
+        .q.s-partial { border-color: #ff9800; }
+        .q .eh { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .q .el { background: #1e88e5; color: #fff; font-weight: bold; padding: 2px 12px; border-radius: 14px; }
+        .q.ex .el { background: #00897b; }
+        .q .tag { font-size: 12px; color: #1565c0; border: 1px solid #b3d4fc; border-radius: 10px; padding: 0 8px; background: #eef6fc; }
+        .qtext { margin-bottom: 8px; word-wrap: break-word; }
+
+        .opt { display: flex; gap: 8px; align-items: flex-start; background: #fff; border: 1px solid #b3d4fc; border-radius: 4px; padding: 8px 11px; margin: 6px 0; cursor: pointer; transition: .2s; }
+        .opt:hover:not(.locked):not(.static) { background: #e3f0fb; border-color: #1e88e5; }
+        .opt:focus-visible, .tfb button:focus-visible { outline: 3px solid #ff9800; outline-offset: 1px; }
+        .opt.static { cursor: default; }
+        .opt.locked { cursor: default; }
+        .opt.locked:not(.correct):not(.wrong) { opacity: .55; }
+        .opt.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+        .opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .lab { font-weight: bold; min-width: 1.7em; }
+        .ob { flex: 1; min-width: 0; overflow-x: auto; }
+
+        .tfrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #fff; border: 1px solid #b3d4fc; border-radius: 4px; padding: 7px 10px; margin: 6px 0; }
+        .tfrow.r-ok { border-color: #28a745; }
+        .tfrow.r-bad { border-color: #dc3545; }
+        .tfc { flex: 1 1 60%; min-width: 0; overflow-x: auto; }
+        .tfb { display: flex; gap: 8px; }
+        .tfb button { padding: 6px 16px; font-weight: bold; border: 2px solid #b3d4fc; background: #fff; border-radius: 5px; cursor: pointer; }
+        .tfb button:hover:not(:disabled) { background: #e3f0fb; }
+        .tfb button:disabled { cursor: default; }
+        .tfb button.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+        .tfb button.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+        .shortrow { display: flex; gap: 8px; flex-wrap: wrap; }
+        .sans { width: 190px; max-width: 100%; padding: 8px 12px; font-size: 17px; font-weight: bold; border: 2px solid #1e88e5; border-radius: 5px; color: #1565c0; }
+        .sans.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+        .sans.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .chk { background: #ffc107; border: none; border-radius: 5px; padding: 0 18px; font-weight: bold; cursor: pointer; min-height: 40px; }
+        .chk:disabled { background: #ccc; cursor: default; }
+        .true-ans { margin-top: 8px; color: #28a745; font-weight: bold; }
+
+        .fb { margin-top: 6px; font-weight: bold; min-height: 1.2em; }
+        .f-correct { color: #28a745; } .f-wrong { color: #dc3545; } .f-partial { color: #ef6c00; }
+        .qtools { margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .sol-btn { background: #17a2b8; color: #fff; border: none; border-radius: 4px; padding: 6px 14px; cursor: pointer; font-weight: bold; }
+        .sol-btn:hover { background: #138496; }
+        .redo-btn { background: #fff; color: #1565c0; border: 1px solid #1e88e5; border-radius: 4px; padding: 6px 12px; cursor: pointer; font-weight: bold; }
+        .solution-box { display: none; margin-top: 10px; padding: 12px 14px; background: #e8f4fc; border-left: 5px solid #0288d1; border-radius: 4px; overflow-x: auto; }
+
+        /* ---- mục lục (ngăn kéo) ---- */
+        .drawer { position: fixed; top: 0; bottom: 0; left: 0; width: min(360px, 88vw); z-index: 80; background: #fff; box-shadow: 4px 0 18px rgba(0,0,0,.25); transform: translateX(-105%); transition: transform .25s; display: flex; flex-direction: column; }
+        .drawer.open { transform: none; }
+        .drawer .dtop { background: #1e88e5; color: #fff; padding: 10px 14px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .drawer .dtop button { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
+        .toc { overflow-y: auto; padding: 8px 6px 20px; }
+        .toc a { display: block; padding: 5px 10px; color: #1c2b3a; text-decoration: none; border-radius: 4px; font-size: 14px; line-height: 1.4; }
+        .toc a:hover { background: #e3f0fb; }
+        .toc a.l1 { font-weight: bold; color: #1565c0; margin-top: 8px; }
+        .toc a.l2 { padding-left: 18px; }
+        .toc a.l3 { padding-left: 30px; font-size: 13px; }
+        .toc a.l4 { padding-left: 30px; font-size: 13px; color: #00695c; }
+        .veil { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 70; display: none; }
+        .veil.open { display: block; }
+
+        .foot { text-align: center; font-size: 12px; color: #5f7b94; padding: 10px; }
+        .foot:empty { display: none; }
+        @media screen { .foot { display: none; } }          /* trên màn hình đã có .credit cạnh nút ⬆; .foot chỉ dùng khi in */
+
+        /* ---- góc dưới phải: [ℹ️ tác giả  ▶️ số điện thoại] + nút tròn lên đầu trang ---- */
+        .fab { position: fixed; right: 14px; bottom: 14px; z-index: 40; display: flex; align-items: center; gap: 8px; max-width: calc(100vw - 28px); pointer-events: none; }
+        .fab > * { pointer-events: auto; }
+        .credit { display: flex; align-items: center; flex-wrap: wrap; gap: 0 12px; min-height: 42px; padding: 4px 14px; background: #fff; color: #1565c0; border: 1px solid #b3d4fc; border-radius: 21px; font-size: 12px; line-height: 1.35; box-shadow: 0 2px 8px rgba(30,136,229,.18); min-width: 0; }
+        .credit:empty { display: none; }
+        .credit .cr-i { white-space: nowrap; }
+        .credit .cr-i b { font-weight: bold; }
+        #toTop { flex: 0 0 42px; background: #1e88e5; color: #fff; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 18px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+
+
+        /* ---- tiến độ học tập (thanh trên cùng) ---- */
+        .prow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; max-width: 860px; margin: 6px auto 0; font-size: 13px; }
+        .ptxt { font-weight: bold; white-space: nowrap; }
+        .ptrack { flex: 1 1 90px; min-width: 70px; height: 8px; background: rgba(255,255,255,.35); border-radius: 4px; overflow: hidden; }
+        .pfill { height: 100%; width: 0; background: #fff; transition: width .3s; }
+        .fsel { background: #fff; color: #1565c0; border: none; border-radius: 4px; padding: 3px 6px; font-weight: bold; font-size: 13px; max-width: 100%; }
+        .lswarn { background: #fff3cd; color: #7a5600; border-radius: 4px; padding: 0 8px; font-size: 12px; }
+        .fltnote { margin: 4px 0 10px; padding: 6px 12px; background: #fff6ec; border: 1px solid #f5c18c; border-radius: 6px; color: #8a4a00; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+        /* ---- trạng thái từng câu, thử lại, tự đánh giá ---- */
+        .stt { font-size: 12px; font-weight: bold; border: 1px solid transparent; border-radius: 10px; padding: 0 8px; }
+        .stt:empty { display: none; }
+        .s-correct .stt { color: #155724; background: #d4edda; border-color: #28a745; }
+        .s-partial .stt { color: #8a4a00; background: #fff3e0; border-color: #ff9800; }
+        .s-wrong .stt { color: #721c24; background: #f8d7da; border-color: #dc3545; }
+        .tfb button.sel { background: #e3f0fb; border-color: #1e88e5; color: #1565c0; }
+        .tf-chk { background: #ffc107; border: none; border-radius: 5px; padding: 0 18px; font-weight: bold; cursor: pointer; min-height: 40px; margin-top: 6px; }
+        .tf-chk:disabled { background: #ccc; cursor: default; }
+        .rv-btn { background: #fff; color: #8a4a00; border: 1px solid #f5c18c; border-radius: 4px; padding: 6px 12px; cursor: pointer; font-weight: bold; }
+        .rv-btn.on { background: #fff6ec; border-color: #ff9800; }
+        .rate { margin-top: 10px; padding: 8px 12px; background: #f7fbff; border: 1px dashed #b3d4fc; border-radius: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .rate .rq { font-weight: bold; color: #1565c0; margin-right: 4px; }
+        .rb { border: 2px solid #b3d4fc; background: #fff; border-radius: 5px; padding: 5px 14px; font-weight: bold; cursor: pointer; }
+        .rb:hover { background: #e3f0fb; }
+        .rb.ok.on { background: #d4edda; border-color: #28a745; color: #155724; }
+        .rb.near.on { background: #fff3e0; border-color: #ff9800; color: #8a4a00; }
+        .rb.no.on { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+        /* ---- tổng kết ---- */
+        .dsum { margin-top: 10px; padding: 6px 12px; background: #eef6fc; border: 1px solid #b3d4fc; border-radius: 6px; font-size: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .dsum:empty { display: none; }
+        .dbtn { background: #fff; color: #1565c0; border: 1px solid #1e88e5; border-radius: 4px; padding: 3px 10px; cursor: pointer; font-weight: bold; }
+        .dbtn:disabled { color: #999; border-color: #ccc; cursor: default; }
+        .sumsec { margin: 34px 0 10px; scroll-margin-top: 104px; }
+        .sumsec .sline { font-weight: bold; color: #0d47a1; }
+        .sgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; margin: 10px 0 14px; }
+        .scard { background: #fff; border: 2px solid #b3d4fc; border-radius: 8px; padding: 8px 10px; text-align: center; }
+        .scard b { display: block; font-size: 22px; color: #1565c0; }
+        .scard span { font-size: 12px; color: #5f7b94; }
+        .swrap { overflow-x: auto; }
+        .stab { border-collapse: collapse; width: 100%; background: #fff; }
+        .stab th, .stab td { border: 1px solid #b3d4fc; padding: 5px 10px; text-align: center; }
+        .stab th { background: #e8f4fc; color: #0d47a1; }
+        .stab td:first-child { text-align: left; }
+        .skind { margin: 6px 0; padding-left: 20px; }
+        .sbtns { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 6px; }
+        .sbtns .dbtn { padding: 7px 14px; }
+        .snote { font-size: 12px; color: #5f7b94; margin: 4px 0; }
+
+        /* --- SVG / ẢNH + KHUNG ZOOM DÙNG CHUNG (khung tự co giãn, không đặt chiều cao cố định) --- */
+        :root {
+            --zoom-accent: #1e88e5; --zoom-accent-hover: #1565c0;
+            --zoom-border: #b3d4fc; --zoom-bar-bg: #eef6fc; --zoom-max-h: none;
+        }
+        svg { max-width: 100%; height: auto; display: block; margin: 10px auto; overflow: visible; }
+        svg text { font-family: Arial, sans-serif; }
+        img { max-width: 100%; height: auto; }
+        .zoom-container { display: flex; align-items: flex-start; gap: 10px; margin: 15px 0; }
+        .zoom-viewport {
+            flex: 1 1 auto; min-width: 0;
+            overflow: auto; -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--zoom-border); border-radius: 4px; background: #fff;
+            box-sizing: border-box; padding: 4px;
+        }
+        /* chỉ giới hạn chiều cao và giữ cuộn bên trong khi ảnh đang được phóng to */
+        .zoom-viewport.can-pan { cursor: grab; max-height: var(--zoom-max-h); overscroll-behavior: contain; }
+        .zoom-viewport.dragging { cursor: grabbing; user-select: none; }
+        .zoom-toolbar { display: flex; flex-direction: column; gap: 5px; background: var(--zoom-bar-bg); padding: 5px; border-radius: 4px; border: 1px solid var(--zoom-border); flex-shrink: 0; }
+        .zoom-btn { background: var(--zoom-accent); color: #fff; border: none; padding: 6px 10px; font-size: 14px; border-radius: 4px; cursor: pointer; transition: background .2s, opacity .2s; white-space: nowrap; }
+        .zoom-btn:hover:not(:disabled) { background: var(--zoom-accent-hover); }
+        .zoom-btn:disabled { background: #ccc; cursor: not-allowed; opacity: .6; }
+        .zoom-media { display: block; margin: 0 auto; max-width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+        .zoom-media.zoomed { width: var(--zw) !important; max-width: none !important; height: auto !important; }
+        /* --- BẢNG DÀI: bọc trong khung cuộn ngang, không làm tràn lề --- */
+        .table-scroll { display: block; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; margin: 10px 0; }
+        .table-scroll > table { margin: 0; max-width: 100%; border-collapse: collapse; }
+        .table-scroll th, .table-scroll td { overflow-wrap: break-word; }
+        /* .table-responsive do TeX2HTML tạo ra: trước đây chỉ mẫu làm bài có CSS này nên bảng rộng bị tràn ở trình chiếu / luyện tập */
+        .table-responsive { display: block; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; margin: 15px 0; }
+        /* --- BẢNG RỘNG TRÊN ĐIỆN THOẠI: gợi ý vuốt ngang, cột đầu cố định, xem toàn màn hình --- */
+        .tbl-box { position: relative; margin: 12px 0; max-width: 100%; min-width: 0; }
+        .tbl-box > .tbl-wrap { position: relative; }
+        .tbl-box .table-responsive, .tbl-box .table-scroll { margin: 0; }
+        .tbl-hint { display: none; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 4px; font-size: 12.5px; color: #5f7b94; }
+        .tbl-box.has-scroll > .tbl-hint { display: flex; }
+        .tbl-open { font: inherit; font-size: 12.5px; padding: 4px 10px; border-radius: 14px; border: 1px solid var(--zoom-border); background: var(--zoom-bar-bg); color: var(--zoom-accent-hover); cursor: pointer; white-space: nowrap; }
+        .tbl-fade { display: none; position: absolute; top: 0; right: 0; bottom: 0; width: 30px; pointer-events: none; background: linear-gradient(to right, rgba(255,255,255,0), rgba(120,140,160,.28)); }
+        .tbl-box.has-scroll:not(.at-end) .tbl-fade { display: block; }
+        .tbl-box.has-scroll table.sticky-first tr > :first-child { position: sticky; left: 0; z-index: 2; background: #fff; box-shadow: 2px 0 4px -2px rgba(0,0,0,.35); }
+        @media (max-width: 600px) {
+            .tbl-box td, .tbl-box th { font-size: 14px; padding: 4px 7px !important; }
+        }
+        #tblOverlay { position: fixed; inset: 0; z-index: 99999; background: #fff; display: none; flex-direction: column; }
+        #tblOverlay.open { display: flex; }
+        .tbl-ov-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--zoom-bar-bg); border-bottom: 1px solid var(--zoom-border); }
+        .tbl-ov-bar .ttl { flex: 1; min-width: 0; font-size: 13px; font-weight: bold; color: #333; }
+        .tbl-ov-body { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 10px; touch-action: pan-x pan-y; }
+        .tbl-ov-body table { margin: 0; width: auto; max-width: none; border-collapse: collapse; font-size: calc(15px * var(--tbl-s, 1)); }
+        .tbl-ov-body td, .tbl-ov-body th { font-size: inherit !important; padding: 5px 9px; }
+
+        
+        /* ===== Bổ sung của bộ chuyển đổi TeX2HTML (PyQt6) ===== */
+        .tp { margin: 6px 0; }
+        .center { text-align: center; }
+        /* Huy hiệu mức độ khó (suy ra từ ID câu hỏi, HTML bài giảng) */
+        .lvl { display: inline-block; margin-left: 8px; padding: 1px 10px; border-radius: 12px; border: 1px solid; font-size: 12px; font-weight: bold; line-height: 1.6; white-space: nowrap; vertical-align: middle; cursor: help; }
+        .lvl .dots { letter-spacing: 1px; margin-right: 4px; }
+        .lvl.lv1 { background: #e6f4ea; border-color: #34a853; color: #1b6b32; }
+        .lvl.lv2 { background: #e3f0fb; border-color: #4a90d9; color: #0d47a1; }
+        .lvl.lv3 { background: #fff3e0; border-color: #fb8c00; color: #8a4b00; }
+        .lvl.lv4 { background: #fdeaea; border-color: #e53935; color: #a31515; }
+        .figure svg, .figure img { max-width: 100%; height: auto; }
+        .fig-error { color: #b00020; border: 1px dashed #b00020; padding: 6px 10px; text-align: center; margin: 8px 0; font-size: 14px; }
+        .fbox { border: 1px solid currentColor; padding: 0 4px; }
+        blockquote { margin: 8px 20px; }
+        img { max-width: 100%; height: auto; }
+        ul, ol { margin: 6px 0; padding-left: 24px; }
+        ul.desc, li.cl { list-style: none; }
+        li.cl .lbl { font-weight: bold; margin-right: .4em; }
+        ol[class^="paren-"] { list-style: none; counter-reset: pc; padding-left: 2.2em; }
+        ol[class^="paren-"] > li { counter-increment: pc; position: relative; margin: 4px 0; }
+        ol[class^="paren-"] > li::before { position: absolute; left: -2.2em; width: 2em; text-align: right; font-weight: bold; }
+        ol.paren-a > li::before { content: counter(pc, lower-alpha) ")"; }
+        ol.paren-A > li::before { content: counter(pc, upper-alpha) ")"; }
+        ol.paren-i > li::before { content: counter(pc, lower-roman) ")"; }
+        ol.paren-I > li::before { content: counter(pc, upper-roman) ")"; }
+        ol.paren-1 > li::before { content: counter(pc, decimal) ")"; }
+        table.tex-table { border-collapse: collapse; margin: 8px auto; }
+        table.tex-table td { padding: 4px 10px; }
+        table.tex-table.bordered td { border: 1px solid #555; }
+        .tex-fa { margin: 0 .25em; font-style: normal; }
+
+
+
+        @media (max-width: 600px) {
+            main { padding: 10px; } .q { padding: 10px; } .tfc { flex-basis: 100%; }
+            .tbtn { padding: 5px 9px; }
+            .credit { flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; font-size: 11px; padding: 3px 10px; border-radius: 14px; }
+        }
+        @media print {
+            .topbar, .fab, #toTop, .drawer, .veil, .qtools, .rate, .tf-chk, .dsum, .fltnote, .sumsec { display: none !important; }
+            .solution-box.show-print { display: block !important; }
+        }
+    </style>
+
+    <script>
+        window.MathJax = {
+          tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']], processEscapes: true, macros: {"wideparen": ["\\overset{\\frown}{#1}", 1], "overarc": ["\\overset{\\frown}{#1}", 1]} },
+          startup: { typeset: false },
+          options: { enableMenu: false, ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<style>
+.lz-lock { position: fixed; inset: 0; z-index: 100000; display: none; align-items: center; justify-content: center; padding: 14px; background: rgba(0,0,0,.5); }
+.lz-lock.open { display: flex; }
+.lz-lock-box { background: #fff; color: #1c2b3a; width: 100%; max-width: 360px; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.35); font-family: Arial, sans-serif; }
+.lz-lock-box h4 { margin: 0 0 6px; color: #1565c0; font-size: 18px; }
+.lz-lock-box p { margin: 0 0 12px; font-size: 14px; color: #555; }
+.lz-lock-box input { width: 100%; box-sizing: border-box; padding: 10px; font-size: 16px; border: 2px solid #1e88e5; border-radius: 6px; }
+.lz-lock-box input.bad { border-color: #dc3545; animation: lzshake .3s; }
+.lz-lock-err { min-height: 1.3em; margin: 6px 0 2px; font-size: 13px; color: #dc3545; font-weight: bold; }
+.lz-lock-btns { display: flex; gap: 8px; margin-top: 8px; }
+.lz-lock-btns button { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; color: #fff; background: #1e88e5; }
+.lz-lock-btns button.cancel { background: #6c757d; }
+@keyframes lzshake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+</style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="row">
+            <h1 id="ttl">TOÁN ANH KIÊN - 0987 473 509</h1>
+            <div class="tools">
+                <button type="button" class="tbtn" id="btnToc">☰ Mục lục</button>
+                <button type="button" class="tbtn" id="btnAll">👁 Hiện tất cả lời giải</button>
+                <button type="button" class="tbtn" id="btnSum" hidden>📊 Tổng kết</button>
+            </div>
+        </div>
+        <div class="prow" id="prow" hidden>
+            <span class="ptxt" id="ptxt">Đã làm 0/0 · đúng 0</span>
+            <div class="ptrack"><div class="pfill" id="pfill"></div></div>
+            <select class="fsel" id="fltSel" aria-label="Lọc câu hỏi">
+                <option value="all">Tất cả</option>
+                <option value="todo">Chưa làm</option>
+                <option value="rev">Cần ôn lại</option>
+            </select>
+            <span class="lswarn" id="lsWarn" hidden>⚠ Trình duyệt không cho lưu tiến độ</span>
+        </div>
+    </div>
+
+    <div class="veil" id="veil"></div>
+    <aside class="drawer" id="drawer" aria-label="Mục lục">
+        <div class="dtop"><span>Mục lục</span><button type="button" id="btnTocClose" aria-label="Đóng">✕</button></div>
+        <nav class="toc" id="toc"><a class="l1" href="#h1">Các bài toán cực trị về toạ độ không gian</a></nav>
+    </aside>
+
+    <main id="content">
+<div class="lz"><h2 class="hd hd1" id="h1">Các bài toán cực trị về toạ độ không gian</h2></div><div class="lz"><div class="q ex" id="ex1" data-kind="essay"><div class="eh"><span class="el">Câu 1</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho ba điểm $A(1; -2; 3)$, $B(2; 4; -1)$ và $C(3; 1; 4)$. <ul><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $T = \left|\overrightarrow{MA} + \overrightarrow{MB} + \overrightarrow{MC}\right|$ đạt giá trị nhỏ nhất và tính giá trị nhỏ nhất đó;</li><li>Tìm tọa độ điểm $N$ thuộc trục $Oz$ sao cho biểu thức $P = \left|2\overrightarrow{NA} + \overrightarrow{NB} - \overrightarrow{NC}\right|$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $E$ thuộc mặt phẳng $(Oxy)$ sao cho tổng bình phương khoảng cách $S = EA^2 + EB^2 + EC^2$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex2" data-kind="essay"><div class="eh"><span class="el">Câu 2</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho hai điểm $A(1; 2; 2)$ và $B(5; 6; 4)$. <ul><li>Nhận xét vị trí của hai điểm $A$ và $B$ đối với mặt phẳng tọa độ $(Oxy)$. Tìm tọa độ điểm $A'$ đối xứng với $A$ qua mặt phẳng $(Oxy)$;</li><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho tổng khoảng cách $MA + MB$ đạt giá trị nhỏ nhất và tính giá trị nhỏ nhất đó;</li><li>Tìm tọa độ điểm $N$ thuộc mặt phẳng $(Oxy)$ sao cho $\left|NA - NB\right|$ đạt giá trị lớn nhất;</li><li>Tìm tọa độ điểm $P$ thuộc mặt phẳng $(Oxy)$ sao cho tích vô hướng $\overrightarrow{PA} \cdot \overrightarrow{PB}$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex3" data-kind="essay"><div class="eh"><span class="el">Câu 3</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho bốn điểm $A(2; 4; -2)$, $B(3; -1; 4)$, $C(0; 6; 2)$ và $D(4; 2; 6)$. <ul><li>Tìm tọa độ điểm $I$ thỏa mãn $\overrightarrow{IA} + 2\overrightarrow{IB} - \overrightarrow{IC} = \overrightarrow{0}$. Từ đó tìm điểm $M$ thuộc mặt phẳng tọa độ $(Oyz)$ sao cho biểu thức $T_1 = \left|\overrightarrow{MA} + 2\overrightarrow{MB} - \overrightarrow{MC}\right|$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $N$ thuộc trục $Ox$ sao cho biểu thức $T_2 = \left|3\overrightarrow{NA} - 2\overrightarrow{NB} + \overrightarrow{NC}\right|$ đạt giá trị nhỏ nhất và tính giá trị nhỏ nhất đó;</li><li>Tìm tọa độ điểm $P$ thuộc mặt phẳng tọa độ $(Oxy)$ sao cho biểu thức $T_3 = \left|\overrightarrow{PA} + \overrightarrow{PB} + \overrightarrow{PC} + \overrightarrow{PD}\right|$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex4" data-kind="essay"><div class="eh"><span class="el">Câu 4</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho bốn điểm $A(1; 1; 2)$, $B(3; 5; 2)$, $C(2; 0; -1)$ và $D(6; 8; -5)$. <ul><li>Gọi $I$ là trung điểm của $AB$ và $J$ là trung điểm của $CD$. Tìm tọa độ các điểm $I$, $J$ và nhận xét vị trí của $I$, $J$ đối với mặt phẳng $(Oxy)$;</li><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $P = \left|\overrightarrow{MA} + \overrightarrow{MB}\right| + \left|\overrightarrow{MC} + \overrightarrow{MD}\right|$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $N$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $Q = \Big|\left|\overrightarrow{NA} + \overrightarrow{NB}\right| - \left|\overrightarrow{NC} + \overrightarrow{ND}\right|\Big|$ đạt giá trị lớn nhất;</li><li>Với các điểm $A$, $B$, $C$ đã cho, tìm điểm $E$ thuộc mặt phẳng $(Oyz)$ sao cho $\left|\overrightarrow{EA} + \overrightarrow{EB}\right| + 2EC$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex5" data-kind="essay"><div class="eh"><span class="el">Câu 5</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho ba điểm $A(1; 2; -1)$, $B(3; 0; 3)$ và $C(2; 4; 1)$. <ul><li>Chứng minh rằng vectơ $\overrightarrow{u} = \overrightarrow{MA} + \overrightarrow{MB} - 2\overrightarrow{MC}$ không phụ thuộc vào vị trí điểm $M$ và tính độ dài của vectơ $\overrightarrow{u}$;</li><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $F = \left|2\overrightarrow{MA} + \overrightarrow{MB} - \overrightarrow{MC}\right| + \left|\overrightarrow{MA} + \overrightarrow{MB} - 2\overrightarrow{MC}\right|$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex6" data-kind="essay"><div class="eh"><span class="el">Câu 6</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho ba điểm $A(1; -1; 2)$, $B(3; 5; -4)$ và $C(-1; 2; 5)$. <ul><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Ozx)$ sao cho biểu thức $S_1 = MA^2 + MB^2 + MC^2$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $N$ thuộc trục $Oy$ sao cho biểu thức $S_2 = 2NA^2 + NB^2 - NC^2$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $P$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $S_3 = 3PA^2 - 2PB^2 - 2PC^2$ đạt giá trị lớn nhất và tính giá trị lớn nhất đó.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex7" data-kind="essay"><div class="eh"><span class="el">Câu 7</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho ba điểm $A(2; -2; 1)$, $B(4; 2; 3)$ và $C(0; 6; -1)$. <ul><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oyz)$ sao cho tích vô hướng $\overrightarrow{MA} \cdot \overrightarrow{MB}$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $N$ thuộc trục $Ox$ sao cho biểu thức $P = \overrightarrow{NA} \cdot \overrightarrow{NB} + 2\overrightarrow{NB} \cdot \overrightarrow{NC} + \overrightarrow{NC} \cdot \overrightarrow{NA}$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $K$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $Q = \overrightarrow{KA} \cdot \overrightarrow{KB} + \overrightarrow{KB} \cdot \overrightarrow{KC} + \overrightarrow{KC} \cdot \overrightarrow{KA}$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex8" data-kind="essay"><div class="eh"><span class="el">Câu 8</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho hai điểm $A(1; 2; 3)$ và $B(3; -2; 1)$. <ul><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho biểu thức $T = \overrightarrow{MA} \cdot \overrightarrow{MB} + OM^2$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $N$ thuộc trục $Oz$ sao cho biểu thức $H = 2\overrightarrow{NA} \cdot \overrightarrow{NB} - 3NO^2$ đạt giá trị lớn nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex9" data-kind="essay"><div class="eh"><span class="el">Câu 9</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho bốn điểm $A(1; -3; 2)$, $B(5; 1; -4)$, $C(3; 5; 4)$ và $D(-1; 1; 2)$. <ul><li>Tìm tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho $MA + MB$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $N$ thuộc mặt phẳng $(Oxy)$ sao cho $|NA - NB|$ đạt giá trị lớn nhất;</li><li>Tìm tọa độ điểm $P$ thuộc mặt phẳng $(Oxy)$ sao cho $PC + PD$ đạt giá trị nhỏ nhất;</li><li>Tìm tọa độ điểm $Q$ thuộc mặt phẳng $(Oxy)$ sao cho $|QC - QD|$ đạt giá trị lớn nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex10" data-kind="essay"><div class="eh"><span class="el">Câu 10</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, sử dụng phương pháp đại số (bất đẳng thức $\sqrt{u^2 + v^2} + \sqrt{m^2 + n^2} \ge \sqrt{(u + m)^2 + (v + n)^2}$) để giải các bài toán cực trị trên trục tọa độ sau: <ul><li>Cho hai điểm $A(1; 3; 4)$ và $B(7; -4; 3)$. Tìm tọa độ điểm $M$ thuộc trục $Ox$ sao cho tổng khoảng cách $MA + MB$ đạt giá trị nhỏ nhất và tính giá trị nhỏ nhất đó;</li><li>Cho hai điểm $C(2; 5; 0)$ và $D(0; -1; 4)$. Tìm tọa độ điểm $N$ thuộc trục $Oy$ sao cho tổng khoảng cách $NC + ND$ đạt giá trị nhỏ nhất;</li><li>Cho hai điểm $P(1; 0; 3)$ và $Q(5; 4; -3)$. Tìm tọa độ điểm $K$ thuộc trục $Ox$ sao cho biểu thức $|KP - KQ|$ đạt giá trị lớn nhất và tính giá trị lớn nhất đó.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex11" data-kind="essay"><div class="eh"><span class="el">Câu 11</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho điểm $A(3; 4; 3)$. Gọi $M$, $N$ lần lượt là hình chiếu vuông góc của điểm $A$ lên các trục tọa độ $Ox$ và $Oy$. Giả sử $P(0; 0; z)$ là một điểm di động trên trục $Oz$. <ul><li>Tìm tọa độ điểm $P$ để tam giác $PMN$ có chu vi nhỏ nhất và tính giá trị nhỏ nhất đó;</li><li>Biểu diễn $\cos\widehat{MPN}$ theo $z$, từ đó tìm tọa độ điểm $P$ sao cho góc $\widehat{MPN}$ đạt giá trị lớn nhất;</li><li>Tìm tọa độ điểm $P$ thuộc tia $Oz$ ($z &gt; 0$) sao cho biểu thức $\dfrac{PM^2 + PN^2}{OP}$ đạt giá trị nhỏ nhất.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex12" data-kind="essay"><div class="eh"><span class="el">Câu 12</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$, cho điểm $A(2; 3; 0)$ thuộc mặt phẳng $(Oxy)$ và điểm $B(0; 4; 2)$ thuộc mặt phẳng $(Oyz)$. Gọi $M$ là điểm di động trên tia $Ox$ và $N$ là điểm di động trên tia $Oz$. <ul><li>Gọi $M(x; 0; 0)$ và $N(0; 0; z)$ ($x, z \ge 0$). Hãy biểu diễn tổng độ dài đường gấp khúc $L = AM + MN + NB$ theo $x$ và $z$;</li><li>Bằng cách trải phẳng hai mặt phẳng $(Oxy)$ và $(Oyz)$ lên mặt phẳng $(Ozx)$ (hoặc sử dụng bất đẳng thức Minkowski cho ba căn thức), hãy tìm giá trị nhỏ nhất của độ dài đường gấp khúc $AM + MN + NB$ và xác định tọa độ của $M$, $N$ khi đó.</li></ul></div><div class="tp"><div class="center"><div class="tp"><div class="table-responsive figure" style="text-align:center;margin:10px 0"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="149.505pt" height="115.866pt" viewBox="0 0 149.505 115.866" version="1.2"><defs><g><symbol overflow="visible" id="f1_glyph0-0"><path style="stroke:none;" d="" /></symbol><symbol overflow="visible" id="f1_glyph0-1"><path style="stroke:none;" d="M 3.312 -3 C 3.375 -3.266 3.609 -4.172 4.297 -4.172 C 4.359 -4.172 4.594 -4.172 4.797 -4.047 C 4.516 -4 4.328 -3.75 4.328 -3.516 C 4.328 -3.344 4.438 -3.156 4.703 -3.156 C 4.922 -3.156 5.234 -3.344 5.234 -3.734 C 5.234 -4.25 4.656 -4.391 4.312 -4.391 C 3.734 -4.391 3.391 -3.859 3.266 -3.641 C 3.016 -4.297 2.484 -4.391 2.203 -4.391 C 1.156 -4.391 0.594 -3.109 0.594 -2.859 C 0.594 -2.766 0.703 -2.766 0.719 -2.766 C 0.797 -2.766 0.828 -2.781 0.844 -2.875 C 1.188 -3.922 1.844 -4.172 2.172 -4.172 C 2.359 -4.172 2.719 -4.078 2.719 -3.516 C 2.719 -3.203 2.547 -2.531 2.172 -1.141 C 2.016 -0.531 1.672 -0.109 1.234 -0.109 C 1.172 -0.109 0.938 -0.109 0.734 -0.234 C 0.984 -0.281 1.203 -0.5 1.203 -0.781 C 1.203 -1.047 0.984 -1.125 0.828 -1.125 C 0.531 -1.125 0.281 -0.859 0.281 -0.547 C 0.281 -0.094 0.781 0.109 1.219 0.109 C 1.875 0.109 2.234 -0.594 2.266 -0.641 C 2.391 -0.281 2.75 0.109 3.344 0.109 C 4.359 0.109 4.922 -1.172 4.922 -1.422 C 4.922 -1.516 4.844 -1.516 4.812 -1.516 C 4.719 -1.516 4.703 -1.484 4.688 -1.406 C 4.359 -0.344 3.672 -0.109 3.359 -0.109 C 2.969 -0.109 2.812 -0.422 2.812 -0.766 C 2.812 -0.984 2.875 -1.203 2.984 -1.641 Z M 3.312 -3 " /></symbol><symbol overflow="visible" id="f1_glyph0-2"><path style="stroke:none;" d="M 4.828 -3.781 C 4.875 -3.922 4.875 -3.938 4.875 -4.016 C 4.875 -4.188 4.734 -4.281 4.578 -4.281 C 4.484 -4.281 4.328 -4.219 4.234 -4.078 C 4.219 -4.031 4.141 -3.719 4.094 -3.531 C 4.031 -3.281 3.953 -3.016 3.891 -2.75 L 3.453 -0.953 C 3.406 -0.812 2.984 -0.109 2.328 -0.109 C 1.812 -0.109 1.703 -0.547 1.703 -0.922 C 1.703 -1.375 1.875 -1.984 2.219 -2.859 C 2.375 -3.266 2.422 -3.375 2.422 -3.578 C 2.422 -4.031 2.094 -4.391 1.594 -4.391 C 0.656 -4.391 0.281 -2.953 0.281 -2.859 C 0.281 -2.766 0.391 -2.766 0.406 -2.766 C 0.5 -2.766 0.516 -2.781 0.562 -2.938 C 0.828 -3.875 1.234 -4.172 1.562 -4.172 C 1.656 -4.172 1.812 -4.172 1.812 -3.859 C 1.812 -3.609 1.719 -3.344 1.656 -3.156 C 1.25 -2.109 1.078 -1.547 1.078 -1.078 C 1.078 -0.188 1.703 0.109 2.281 0.109 C 2.672 0.109 3.016 -0.062 3.297 -0.344 C 3.156 0.172 3.047 0.672 2.641 1.188 C 2.391 1.531 2 1.812 1.547 1.812 C 1.406 1.812 0.969 1.781 0.797 1.406 C 0.953 1.406 1.078 1.406 1.219 1.281 C 1.328 1.188 1.422 1.062 1.422 0.875 C 1.422 0.562 1.156 0.531 1.047 0.531 C 0.828 0.531 0.5 0.688 0.5 1.172 C 0.5 1.672 0.938 2.031 1.547 2.031 C 2.578 2.031 3.594 1.141 3.875 0.016 Z M 4.828 -3.781 " /></symbol><symbol overflow="visible" id="f1_glyph0-3"><path style="stroke:none;" d="M 1.328 -0.828 C 1.859 -1.406 2.141 -1.656 2.5 -1.953 C 2.5 -1.969 3.125 -2.5 3.484 -2.859 C 4.422 -3.781 4.641 -4.25 4.641 -4.297 C 4.641 -4.391 4.547 -4.391 4.531 -4.391 C 4.469 -4.391 4.438 -4.375 4.375 -4.281 C 4.078 -3.812 3.875 -3.641 3.641 -3.641 C 3.406 -3.641 3.281 -3.797 3.125 -3.969 C 2.938 -4.188 2.766 -4.391 2.438 -4.391 C 1.703 -4.391 1.25 -3.469 1.25 -3.266 C 1.25 -3.203 1.266 -3.156 1.359 -3.156 C 1.453 -3.156 1.469 -3.203 1.484 -3.266 C 1.672 -3.719 2.25 -3.734 2.328 -3.734 C 2.547 -3.734 2.734 -3.656 2.969 -3.578 C 3.359 -3.422 3.469 -3.422 3.734 -3.422 C 3.375 -3 2.531 -2.281 2.344 -2.125 L 1.453 -1.297 C 0.781 -0.625 0.422 -0.062 0.422 0.016 C 0.422 0.109 0.531 0.109 0.547 0.109 C 0.625 0.109 0.641 0.094 0.703 -0.016 C 0.938 -0.375 1.234 -0.641 1.547 -0.641 C 1.781 -0.641 1.875 -0.547 2.125 -0.266 C 2.297 -0.047 2.469 0.109 2.766 0.109 C 3.75 0.109 4.328 -1.156 4.328 -1.422 C 4.328 -1.469 4.281 -1.516 4.203 -1.516 C 4.109 -1.516 4.094 -1.453 4.062 -1.391 C 3.828 -0.75 3.203 -0.562 2.875 -0.562 C 2.672 -0.562 2.5 -0.609 2.281 -0.688 C 1.953 -0.812 1.797 -0.859 1.594 -0.859 C 1.562 -0.859 1.406 -0.859 1.328 -0.828 Z M 1.328 -0.828 " /></symbol><symbol overflow="visible" id="f1_glyph0-4"><path style="stroke:none;" d="M 7.359 -4.328 C 7.359 -5.938 6.297 -7 4.812 -7 C 2.672 -7 0.484 -4.75 0.484 -2.438 C 0.484 -0.781 1.594 0.219 3.031 0.219 C 5.141 0.219 7.359 -1.953 7.359 -4.328 Z M 3.094 -0.047 C 2.109 -0.047 1.406 -0.844 1.406 -2.156 C 1.406 -2.594 1.547 -4.047 2.312 -5.203 C 3 -6.234 3.969 -6.75 4.766 -6.75 C 5.578 -6.75 6.469 -6.203 6.469 -4.719 C 6.469 -4 6.203 -2.453 5.219 -1.234 C 4.734 -0.625 3.922 -0.047 3.094 -0.047 Z M 3.094 -0.047 " /></symbol><symbol overflow="visible" id="f1_glyph0-5"><path style="stroke:none;" d="M 9.203 -6.016 C 9.297 -6.375 9.312 -6.484 10.062 -6.484 C 10.281 -6.484 10.375 -6.484 10.375 -6.672 C 10.375 -6.781 10.281 -6.781 10.109 -6.781 L 8.797 -6.781 C 8.531 -6.781 8.531 -6.781 8.406 -6.594 L 4.781 -0.938 L 4 -6.562 C 3.969 -6.781 3.953 -6.781 3.703 -6.781 L 2.328 -6.781 C 2.141 -6.781 2.031 -6.781 2.031 -6.594 C 2.031 -6.484 2.125 -6.484 2.328 -6.484 C 2.453 -6.484 2.641 -6.469 2.75 -6.453 C 2.906 -6.438 2.969 -6.406 2.969 -6.297 C 2.969 -6.266 2.969 -6.234 2.938 -6.109 L 1.672 -1.047 C 1.562 -0.656 1.406 -0.344 0.594 -0.312 C 0.547 -0.312 0.422 -0.297 0.422 -0.125 C 0.422 -0.031 0.484 0 0.562 0 C 0.875 0 1.219 -0.031 1.547 -0.031 C 1.891 -0.031 2.25 0 2.578 0 C 2.625 0 2.75 0 2.75 -0.203 C 2.75 -0.312 2.641 -0.312 2.578 -0.312 C 2 -0.312 1.891 -0.516 1.891 -0.75 C 1.891 -0.812 1.906 -0.859 1.938 -0.969 L 3.297 -6.391 L 4.156 -0.234 C 4.172 -0.109 4.188 0 4.297 0 C 4.406 0 4.469 -0.109 4.516 -0.172 L 8.531 -6.469 L 8.547 -6.469 L 7.125 -0.781 C 7.031 -0.391 7 -0.312 6.219 -0.312 C 6.047 -0.312 5.938 -0.312 5.938 -0.125 C 5.938 0 6.062 0 6.094 0 C 6.375 0 7.047 -0.031 7.328 -0.031 C 7.734 -0.031 8.156 0 8.562 0 C 8.625 0 8.75 0 8.75 -0.203 C 8.75 -0.312 8.672 -0.312 8.484 -0.312 C 8.109 -0.312 7.828 -0.312 7.828 -0.484 C 7.828 -0.531 7.828 -0.547 7.875 -0.719 Z M 9.203 -6.016 " /></symbol><symbol overflow="visible" id="f1_glyph0-6"><path style="stroke:none;" d="M 7.516 -5.75 C 7.609 -6.141 7.797 -6.453 8.594 -6.484 C 8.641 -6.484 8.75 -6.484 8.75 -6.672 C 8.75 -6.688 8.75 -6.781 8.625 -6.781 C 8.297 -6.781 7.953 -6.75 7.625 -6.75 C 7.281 -6.75 6.938 -6.781 6.609 -6.781 C 6.547 -6.781 6.422 -6.781 6.422 -6.594 C 6.422 -6.484 6.531 -6.484 6.609 -6.484 C 7.172 -6.469 7.281 -6.266 7.281 -6.047 C 7.281 -6.016 7.266 -5.859 7.25 -5.828 L 6.141 -1.406 L 3.938 -6.594 C 3.859 -6.781 3.859 -6.781 3.625 -6.781 L 2.297 -6.781 C 2.094 -6.781 2 -6.781 2 -6.594 C 2 -6.484 2.094 -6.484 2.281 -6.484 C 2.328 -6.484 2.969 -6.484 2.969 -6.391 L 1.625 -1.047 C 1.531 -0.656 1.359 -0.344 0.562 -0.312 C 0.5 -0.312 0.391 -0.297 0.391 -0.109 C 0.391 -0.047 0.438 0 0.516 0 C 0.828 0 1.188 -0.031 1.516 -0.031 C 1.844 -0.031 2.203 0 2.531 0 C 2.578 0 2.719 0 2.719 -0.203 C 2.719 -0.297 2.625 -0.312 2.516 -0.312 C 1.938 -0.328 1.859 -0.547 1.859 -0.75 C 1.859 -0.812 1.875 -0.859 1.891 -0.969 L 3.203 -6.219 C 3.25 -6.156 3.25 -6.141 3.297 -6.047 L 5.781 -0.188 C 5.844 -0.016 5.875 0 5.969 0 C 6.078 0 6.078 -0.031 6.125 -0.203 Z M 7.516 -5.75 " /></symbol><symbol overflow="visible" id="f1_glyph0-7"><path style="stroke:none;" d="M 1.781 -1.141 C 1.375 -0.484 1 -0.344 0.562 -0.312 C 0.438 -0.297 0.344 -0.297 0.344 -0.109 C 0.344 -0.047 0.391 0 0.484 0 C 0.75 0 1.047 -0.031 1.328 -0.031 C 1.656 -0.031 2 0 2.328 0 C 2.391 0 2.516 0 2.516 -0.188 C 2.516 -0.297 2.422 -0.312 2.359 -0.312 C 2.125 -0.328 1.891 -0.406 1.891 -0.656 C 1.891 -0.781 1.953 -0.891 2.031 -1.031 L 2.781 -2.297 L 5.281 -2.297 C 5.297 -2.094 5.438 -0.734 5.438 -0.641 C 5.438 -0.344 4.922 -0.312 4.719 -0.312 C 4.578 -0.312 4.484 -0.312 4.484 -0.109 C 4.484 0 4.594 0 4.625 0 C 5.031 0 5.453 -0.031 5.859 -0.031 C 6.109 -0.031 6.734 0 6.984 0 C 7.047 0 7.172 0 7.172 -0.203 C 7.172 -0.312 7.062 -0.312 6.938 -0.312 C 6.312 -0.312 6.312 -0.375 6.297 -0.672 L 5.688 -6.875 C 5.672 -7.078 5.672 -7.109 5.5 -7.109 C 5.344 -7.109 5.297 -7.047 5.234 -6.953 Z M 2.969 -2.609 L 4.922 -5.891 L 5.25 -2.609 Z M 2.969 -2.609 " /></symbol><symbol overflow="visible" id="f1_glyph0-8"><path style="stroke:none;" d="M 1.594 -0.781 C 1.484 -0.391 1.469 -0.312 0.688 -0.312 C 0.516 -0.312 0.422 -0.312 0.422 -0.109 C 0.422 0 0.5 0 0.688 0 L 4.234 0 C 5.797 0 6.969 -1.172 6.969 -2.141 C 6.969 -2.859 6.406 -3.438 5.438 -3.547 C 6.469 -3.734 7.516 -4.469 7.516 -5.422 C 7.516 -6.156 6.859 -6.781 5.672 -6.781 L 2.328 -6.781 C 2.141 -6.781 2.031 -6.781 2.031 -6.594 C 2.031 -6.484 2.125 -6.484 2.312 -6.484 C 2.328 -6.484 2.531 -6.484 2.688 -6.453 C 2.875 -6.438 2.969 -6.422 2.969 -6.297 C 2.969 -6.266 2.953 -6.234 2.922 -6.109 Z M 3.094 -3.641 L 3.703 -6.109 C 3.797 -6.453 3.812 -6.484 4.25 -6.484 L 5.531 -6.484 C 6.406 -6.484 6.609 -5.891 6.609 -5.453 C 6.609 -4.578 5.75 -3.641 4.547 -3.641 Z M 2.641 -0.312 C 2.5 -0.312 2.484 -0.312 2.422 -0.312 C 2.328 -0.328 2.297 -0.344 2.297 -0.422 C 2.297 -0.453 2.297 -0.469 2.344 -0.641 L 3.031 -3.422 L 4.906 -3.422 C 5.859 -3.422 6.047 -2.688 6.047 -2.25 C 6.047 -1.266 5.172 -0.312 4 -0.312 Z M 2.641 -0.312 " /></symbol></g></defs><g id="f1_surface1"><path style="fill:none;stroke-width:0.3985;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 63.455 -77.192 L 18.365 -105.888" transform="matrix(0.9967,0,0,-0.9967,0,0)" /><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 16.629 106.605 L 20.16 106.238 L 18.305 105.539 L 18.457 103.559 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-1" x="6.866" y="108.742" /></g><path style="fill:none;stroke-width:0.3985;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 63.455 -77.192 L 138.002 -77.192" transform="matrix(0.9967,0,0,-0.9967,0,0)" /><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 139.531 76.938 L 136.355 75.348 L 137.547 76.938 L 136.355 78.527 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-2" x="136.92" y="85.299" /></g><path style="fill:none;stroke-width:0.3985;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 63.455 -77.192 L 63.455 -11.15" transform="matrix(0.9967,0,0,-0.9967,0,0)" /><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 63.246 9.129 L 61.656 12.305 L 63.246 11.113 L 64.836 12.305 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-3" x="54.106" y="11.267" /></g><path style="fill:none;stroke-width:0.3985;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-dasharray:2.98883,2.98883;stroke-miterlimit:10;" d="M 80.465 -96.326 L 101.722 -77.192 M 80.465 -96.326 L 42.198 -90.584 M 110.231 -43.174 L 110.227 -77.192 M 110.231 -43.174 L 63.455 -43.174" transform="matrix(0.9967,0,0,-0.9967,0,0)" /><path style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 80.465 -96.326 L 37.942 -93.351 L 63.455 -45.302 L 110.231 -43.174" transform="matrix(0.9967,0,0,-0.9967,0,0)" /><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 64.141 76.938 C 64.141 76.445 63.738 76.043 63.246 76.043 C 62.754 76.043 62.352 76.445 62.352 76.938 C 62.352 77.43 62.754 77.832 63.246 77.832 C 63.738 77.832 64.141 77.43 64.141 76.938 Z M 64.141 76.938 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-4" x="51.31" y="72.851" /></g><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 38.711 93.043 C 38.711 92.547 38.312 92.148 37.816 92.148 C 37.324 92.148 36.926 92.547 36.926 93.043 C 36.926 93.535 37.324 93.934 37.816 93.934 C 38.312 93.934 38.711 93.535 38.711 93.043 Z M 38.711 93.043 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-5" x="23.016" y="96.435" /></g><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 64.141 45.152 C 64.141 44.656 63.738 44.258 63.246 44.258 C 62.754 44.258 62.352 44.656 62.352 45.152 C 62.352 45.645 62.754 46.043 63.246 46.043 C 63.738 46.043 64.141 45.645 64.141 45.152 Z M 64.141 45.152 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-6" x="50.099" y="48.544" /></g><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 81.094 96.008 C 81.094 95.516 80.691 95.113 80.199 95.113 C 79.707 95.113 79.305 95.516 79.305 96.008 C 79.305 96.504 79.707 96.902 80.199 96.902 C 80.691 96.902 81.094 96.504 81.094 96.008 Z M 81.094 96.008 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-7" x="76.476" y="106.88" /></g><path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 110.758 43.031 C 110.758 42.539 110.359 42.137 109.867 42.137 C 109.371 42.137 108.973 42.539 108.973 43.031 C 108.973 43.527 109.371 43.926 109.867 43.926 C 110.359 43.926 110.758 43.527 110.758 43.031 Z M 110.758 43.031 " /><g style="fill:rgb(0%,0%,0%);fill-opacity:1;"><use xlink:href="#f1_glyph0-8" x="113.952" y="38.946" /></g></g></svg></div></div></div></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex13" data-kind="essay"><div class="eh"><span class="el">Câu 13</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$ (đơn vị trên mỗi trục tọa độ là kilômét), mặt phẳng $(Oxy)$ biểu diễn mặt đất bằng phẳng. Có hai trạm thu phát viễn thông đặt trên đỉnh hai tháp cao tại các vị trí $A(1; 2; 0{,}3)$ và $B(5; 6; 0{,}5)$. Người ta cần đặt một trạm trung chuyển cáp quang tại vị trí $M$ trên mặt đất $(Oxy)$ để nối hai đường cáp thẳng từ $M$ đến $A$ và từ $M$ đến $B$. <ul><li>Tìm tọa độ vị trí đặt trạm $M$ trên mặt đất sao cho tổng chiều dài dây cáp $L = MA + MB$ cần sử dụng là ngắn nhất và tính chiều dài ngắn nhất đó (làm tròn đến hàng phần trăm của kilômét);</li><li>Giả sử ngoài hai trạm $A$, $B$ còn có thêm trạm thứ ba tại vị trí $C(3; 1; 0{,}4)$. Do tổn hao năng lượng trên đường truyền tỉ lệ thuận với bình phương chiều dài dây dẫn, các kỹ sư muốn đặt trạm phân phối điện tại điểm $N$ trên mặt đất $(Oxy)$ sao cho tổng tổn hao $H = NA^2 + NB^2 + NC^2$ là nhỏ nhất. Hãy xác định tọa độ của trạm $N$.</li></ul></div></div><div class="qtools"></div></div></div><div class="lz"><div class="q ex" id="ex14" data-kind="essay"><div class="eh"><span class="el">Câu 14</span><span class="tag">Tự luận</span></div><div class="qtext"><div class="tp">Trong không gian $Oxyz$ (đơn vị trên mỗi trục là mét), một con kênh thoát nước thẳng chạy dọc theo trục $Ox$. Hai khu nhà máy được xây dựng trên hai sườn đồi ở các vị trí có tọa độ $A(20; 60; 80)$ và $B(140; 80; 60)$. Ban quản lý dự án muốn xây một trạm bơm nước tại vị trí $M$ nằm trên bờ kênh (coi như nằm trên trục $Ox$) để dẫn nước trực tiếp theo hai đường ống thẳng $MA$ và $MB$ lên hai nhà máy. <ul><li>Nếu chi phí lắp đặt đường ống dẫn nước là $1{,}5$ triệu đồng cho mỗi mét chiều dài ống, hãy tìm tọa độ vị trí đặt trạm bơm $M$ trên trục $Ox$ để tổng chi phí mua đường ống cho cả hai nhà máy là thấp nhất và tính số tiền tối thiểu đó (làm tròn đến hàng triệu đồng);</li><li>Nếu công suất máy bơm tại $M$ đòi hỏi phải thiết kế sao cho tổng $2MA^2 + MB^2$ đạt giá trị nhỏ nhất để giảm áp lực đường ống, khi đó trạm bơm $M$ cần đặt tại tọa độ nào trên trục $Ox$?</li></ul></div></div><div class="qtools"></div></div></div>
+    </main>
+    <div class="foot">Liên hệ TOÁN ANH KIÊN - 0987473509</div>
+    <div class="fab">
+        <div class="credit"><span class="cr-i">🖋 <b>TOÁN ANH KIÊN</b></span><span class="cr-i">📟 0987473509</span></div>
+        <button type="button" id="toTop" title="Lên đầu trang" hidden>⬆</button>
+    </div>
+
+    <script>
+        const MEDIA_SCOPE = '.lz';
+        // =====================================================================
+        // XỬ LÝ SVG / ẢNH (dùng chung cho quiz và trình chiếu)
+        // Mỗi template khai báo trước: const MEDIA_SCOPE = '.vung-chua-hinh, ...';
+        // =====================================================================
+        const MEDIA_SVG_SEL = MEDIA_SCOPE.split(',').map(s => s.trim() + ' svg').join(', ');
+        const MEDIA_ALL_SEL = MEDIA_SCOPE.split(',').map(s => s.trim()).flatMap(s => [s + ' svg', s + ' img']).join(', ');
+
+        // Chỉ nhận số thuần hoặc "px"; "10cm", "50%", "auto"... trả về NaN để không đọc sai đơn vị
+        function svgNum(v) {
+            if (v == null) return NaN;
+            const m = String(v).trim().match(/^([0-9]*\.?[0-9]+)(px)?$/i);
+            return m ? parseFloat(m[1]) : NaN;
+        }
+
+        // Đổi id trong từng SVG thành duy nhất để các hình không dùng nhầm clipPath/marker/gradient của nhau
+        let __svgSeq = 0;
+        function uniquifySvgIds(svg) {
+            if (svg.dataset.idsDone) return;
+            svg.dataset.idsDone = '1';
+            const withId = svg.querySelectorAll('[id]');
+            if (!withId.length) return;
+            const prefix = 'svg' + (++__svgSeq) + '_';
+            const map = {};
+            withId.forEach(n => { map[n.id] = prefix + n.id; });
+            const ids = Object.keys(map);
+            const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const urlRe = /url\(\s*(['"]?)#([^)'"\s]+)\1\s*\)/g;
+            const fixUrls = str => str.replace(urlRe, (m, q, id) => map[id] ? `url(${q}#${map[id]}${q})` : m);
+
+            svg.querySelectorAll('*').forEach(n => {
+                if (n.tagName.toLowerCase() === 'style') {
+                    let css = fixUrls(n.textContent);
+                    css = css.replace(new RegExp('#(' + ids.map(esc).join('|') + ')(?![\\w-])', 'g'), '#' + prefix + '$1');
+                    n.textContent = css;
+                    return;
+                }
+                Array.from(n.attributes).forEach(a => {
+                    if (a.name === 'id' || a.value.indexOf('#') < 0) return;
+                    if ((a.name === 'href' || a.name === 'xlink:href') && a.value.charAt(0) === '#') {
+                        const id = a.value.slice(1);
+                        if (map[id]) n.setAttribute(a.name, '#' + map[id]);
+                    } else {
+                        const nv = fixUrls(a.value);
+                        if (nv !== a.value) n.setAttribute(a.name, nv);
+                    }
+                });
+            });
+            withId.forEach(n => { n.id = map[n.id]; });
+        }
+
+        // Chuẩn hóa SVG: id duy nhất + thêm viewBox nếu thiếu để SVG co giãn đúng
+        function normalizeSvgs() {
+            document.querySelectorAll(MEDIA_SVG_SEL).forEach(svg => {
+                if (svg.closest('mjx-container')) return;
+                uniquifySvgIds(svg);
+                if (svg.dataset.normalized) return;
+                const w = svgNum(svg.getAttribute('width'));
+                const h = svgNum(svg.getAttribute('height'));
+
+                if (!svg.hasAttribute('viewBox')) {
+                    if (w > 0 && h > 0) {
+                        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+                    } else {
+                        try {   // đang bị ẩn thì getBBox lỗi -> sẽ thử lại khi phần chứa nó hiện ra
+                            const b = svg.getBBox();
+                            if (b.width && b.height)
+                                svg.setAttribute('viewBox', `${b.x - 2} ${b.y - 2} ${b.width + 4} ${b.height + 4}`);
+                        } catch (e) { return; }
+                    }
+                }
+                if (svg.hasAttribute('viewBox')) {
+                    if (w > 0) { svg.style.width = '100%'; svg.style.maxWidth = w + 'px'; }  // kích thước gốc làm trần
+                    svg.removeAttribute('height');
+                    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+                    svg.dataset.normalized = '1';
+                }
+            });
+        }
+
+        // Zoom: phóng to bằng cách tăng chiều rộng thật, khung tự cao theo, cuộn bằng thanh cuộn gốc
+        const __zoomRefresh = new Set();
+        let __zoomResizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(__zoomResizeTimer);
+            __zoomResizeTimer = setTimeout(() => __zoomRefresh.forEach(fn => fn()), 150);
+        });
+
+        function setupImageZoom() {
+            document.querySelectorAll(MEDIA_ALL_SEL).forEach(el => {
+                if (el.closest('.zoom-container') || el.closest('mjx-container') || el.classList.contains('no-zoom')) return;
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'zoom-container';
+                const viewport = document.createElement('div');
+                viewport.className = 'zoom-viewport';
+                el.parentNode.insertBefore(wrapper, el);
+                viewport.appendChild(el);
+                wrapper.appendChild(viewport);
+                el.classList.add('zoom-media');
+
+                let scale = 1;
+                const STEP = 0.25, MIN = 1, MAX = 4;
+
+                const toolbar = document.createElement('div');
+                toolbar.className = 'zoom-toolbar';
+                const mk = (txt, title) => {
+                    const b = document.createElement('button');
+                    b.type = 'button'; b.className = 'zoom-btn'; b.innerHTML = txt; b.title = title;
+                    b.setAttribute('aria-label', title);
+                    return b;
+                };
+                const btnIn = mk('➕', 'Phóng to'), btnOut = mk('➖', 'Thu nhỏ'), btnReset = mk('↺', 'Mặc định');
+
+                function apply(newScale) {
+                    const cx = viewport.scrollWidth ? (viewport.scrollLeft + viewport.clientWidth / 2) / viewport.scrollWidth : 0.5;
+                    const cy = viewport.scrollHeight ? (viewport.scrollTop + viewport.clientHeight / 2) / viewport.scrollHeight : 0.5;
+
+                    scale = Math.min(MAX, Math.max(MIN, Math.round(newScale * 100) / 100));
+
+                    el.classList.remove('zoomed');
+                    el.style.removeProperty('--zw');
+                    const base = el.getBoundingClientRect().width;   // chiều rộng vừa khung hiện tại
+                    if (scale > 1 && base > 0) {
+                        el.style.setProperty('--zw', (base * scale) + 'px');
+                        el.classList.add('zoomed');
+                        viewport.scrollLeft = cx * viewport.scrollWidth - viewport.clientWidth / 2;
+                        viewport.scrollTop = cy * viewport.scrollHeight - viewport.clientHeight / 2;
+                    }
+                    viewport.classList.toggle('can-pan', el.classList.contains('zoomed'));
+                    btnIn.disabled = scale >= MAX;
+                    btnOut.disabled = scale <= MIN;
+                }
+
+                btnIn.onclick = () => apply(scale + STEP);
+                btnOut.onclick = () => apply(scale - STEP);
+                btnReset.onclick = () => apply(1);
+                __zoomRefresh.add(() => { if (scale > 1) apply(scale); });
+
+                // Ctrl + lăn chuột để zoom, nhấp đúp để phóng to/reset
+                viewport.addEventListener('wheel', e => {
+                    if (!e.ctrlKey) return;
+                    e.preventDefault();
+                    apply(scale + (e.deltaY < 0 ? STEP : -STEP));
+                }, { passive: false });
+                viewport.addEventListener('dblclick', () => apply(scale > 1 ? 1 : 2));
+
+                // Kéo thả bằng chuột (cảm ứng dùng cuộn gốc của trình duyệt)
+                let dragging = false, sx = 0, sy = 0, sl = 0, st = 0;
+                viewport.addEventListener('pointerdown', e => {
+                    if (e.pointerType !== 'mouse' || !el.classList.contains('zoomed')) return;
+                    dragging = true; sx = e.clientX; sy = e.clientY; sl = viewport.scrollLeft; st = viewport.scrollTop;
+                    viewport.setPointerCapture(e.pointerId);
+                    viewport.classList.add('dragging');
+                });
+                viewport.addEventListener('pointermove', e => {
+                    if (!dragging) return;
+                    viewport.scrollLeft = sl - (e.clientX - sx);
+                    viewport.scrollTop = st - (e.clientY - sy);
+                });
+                const stop = () => { dragging = false; viewport.classList.remove('dragging'); };
+                viewport.addEventListener('pointerup', stop);
+                viewport.addEventListener('pointercancel', stop);
+
+                toolbar.append(btnIn, btnOut, btnReset);
+                wrapper.appendChild(toolbar);
+                apply(1);
+            });
+        }
+
+        // Bọc từng <table> trong khung cuộn ngang (bỏ qua bảng của MathJax hoặc bảng đã được bọc)
+        const MEDIA_TABLE_SEL = MEDIA_SCOPE.split(',').map(s => s.trim() + ' table').join(', ');
+        function wrapTables() {
+            document.querySelectorAll(MEDIA_TABLE_SEL).forEach(t => {
+                if (t.closest('mjx-container, .table-scroll, .table-responsive, #tblOverlay')) return;
+                if (!t.parentNode) return;
+                const w = document.createElement('div');
+                w.className = 'table-scroll';
+                t.parentNode.insertBefore(w, t);
+                w.appendChild(t);
+            });
+        }
+
+        // ---- Bảng rộng: gợi ý vuốt ngang, cột đầu cố định, nút xem toàn màn hình ----
+        const __tblRefresh = [];
+        window.addEventListener('resize', () => __tblRefresh.forEach(fn => fn()));
+        function tblState(box, sc) {
+            const over = sc.scrollWidth > sc.clientWidth + 2;
+            box.classList.toggle('has-scroll', over);
+            box.classList.toggle('at-end', !over || sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 2);
+        }
+        function enhanceTables() {
+            document.querySelectorAll('.table-responsive, .table-scroll').forEach(sc => {
+                if (sc.dataset.tblDone || sc.closest('#tblOverlay')) return;
+                const table = sc.querySelector('table');
+                if (!table || !sc.parentNode) return;
+                sc.dataset.tblDone = '1';
+                const box = document.createElement('div'); box.className = 'tbl-box';
+                const hint = document.createElement('div'); hint.className = 'tbl-hint';
+                const msg = document.createElement('span'); msg.textContent = '\u2194 Vuốt ngang để xem thêm';
+                const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'tbl-open'; btn.textContent = '\u26F6 Xem toàn màn hình';
+                btn.addEventListener('click', e => { e.stopPropagation(); openTableOverlay(table); });
+                hint.append(msg, btn);
+                const wrap = document.createElement('div'); wrap.className = 'tbl-wrap';
+                const fade = document.createElement('div'); fade.className = 'tbl-fade';
+                sc.parentNode.insertBefore(box, sc);
+                box.append(hint, wrap);
+                wrap.append(sc, fade);
+                const first = table.rows[0];
+                if (first && first.cells.length >= 4 && first.cells[0].colSpan === 1 && first.cells[0].rowSpan === 1) table.classList.add('sticky-first');
+                const upd = () => tblState(box, sc);
+                sc.addEventListener('scroll', upd, { passive: true });
+                if (window.ResizeObserver) new ResizeObserver(upd).observe(table);
+                __tblRefresh.push(upd);
+                upd();
+            });
+        }
+        let tblOv = null, tblScale = 1;
+        function closeTableOverlay() {
+            if (!tblOv) return;
+            tblOv.classList.remove('open');
+            document.documentElement.style.overflow = '';
+        }
+        function openTableOverlay(table) {
+            if (!tblOv) {
+                tblOv = document.createElement('div'); tblOv.id = 'tblOverlay';
+                tblOv.innerHTML = '<div class="tbl-ov-bar"><span class="ttl">Kéo để xem; A+ / A\u2212 đổi cỡ chữ</span>'
+                    + '<button type="button" class="zoom-btn" data-a="-">A\u2212</button><button type="button" class="zoom-btn" data-a="+">A+</button>'
+                    + '<button type="button" class="zoom-btn" data-a="x">\u2715 Đóng</button></div><div class="tbl-ov-body"></div>';
+                document.body.appendChild(tblOv);
+                tblOv.addEventListener('click', e => {
+                    const b = e.target.closest('button[data-a]');
+                    if (!b) return;
+                    if (b.dataset.a === 'x') { closeTableOverlay(); return; }
+                    tblScale = Math.min(2.6, Math.max(0.6, tblScale + (b.dataset.a === '+' ? 0.2 : -0.2)));
+                    tblOv.style.setProperty('--tbl-s', tblScale);
+                });
+                window.addEventListener('keydown', e => {                 // đang xem bảng: không để phím chuyển câu / slide
+                    if (!tblOv.classList.contains('open')) return;
+                    e.stopImmediatePropagation();
+                    if (e.key === 'Escape') closeTableOverlay();
+                }, true);
+            }
+            const body = tblOv.querySelector('.tbl-ov-body');
+            body.innerHTML = '';
+            const c = table.cloneNode(true);
+            c.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
+            c.classList.remove('sticky-first');
+            body.appendChild(c);
+            tblScale = 1;
+            tblOv.style.setProperty('--tbl-s', 1);
+            tblOv.classList.add('open');
+            document.documentElement.style.overflow = 'hidden';
+            body.scrollTo(0, 0);
+        }
+
+        function initMedia() { wrapTables(); enhanceTables(); normalizeSvgs(); setupImageZoom(); }
+
+        window.addEventListener('load', () => setTimeout(initMedia, 300));
+
+
+        // =====================================================================
+        // BÀI GIẢNG
+        // =====================================================================
+        const $ = (s, r) => (r || document).querySelector(s);
+        const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+        // ---- dàn chữ toán theo từng khối, xếp hàng để không chạy chồng nhau ----
+        let queue = [], busy = false, pendingJump = null;
+        function keepJump() { if (pendingJump) pendingJump.scrollIntoView({ block: 'start' }); }
+        function pump() {
+            if (busy) return;
+            const batch = [];
+            while (queue.length && batch.length < 3) {
+                const e = queue.shift();
+                if (!e.dataset.ts) { e.dataset.ts = '1'; batch.push(e); }
+            }
+            if (!batch.length) return;
+            busy = true;
+            const go = () => {
+                if (!(window.MathJax && MathJax.startup && MathJax.startup.promise)) { setTimeout(go, 150); return; }
+                MathJax.startup.promise = MathJax.startup.promise
+                    .then(() => MathJax.typesetPromise(batch))
+                    .then(() => { initMedia(); keepJump(); })
+                    .catch(err => console.warn(err))
+                    .then(() => { busy = false; setTimeout(pump, 0); });
+            };
+            go();
+        }
+        function want(els, front) {
+            els = els.filter(e => !e.dataset.ts);
+            queue = front ? els.concat(queue) : queue.concat(els);
+            pump();
+        }
+        function typesetNow(el) {                      // dàn chữ ngay một phần tử (không đánh dấu đã xong ở hàng đợi)
+            const go = () => {
+                if (!(window.MathJax && MathJax.startup && MathJax.startup.promise)) { setTimeout(go, 150); return; }
+                MathJax.startup.promise = MathJax.startup.promise
+                    .then(() => MathJax.typesetPromise([el]))
+                    .then(() => { initMedia(); })
+                    .catch(err => console.warn(err));
+            };
+            go();
+        }
+
+        const lzs = $$('.lz');
+        const title = $('#ttl');
+        want([title], true);
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver(es => {
+                const vis = es.filter(e => e.isIntersecting).map(e => e.target);
+                if (vis.length) want(vis, true);
+            }, { rootMargin: '1500px 0px' });
+            lzs.forEach(e => io.observe(e));
+        }
+        want(lzs, false);                              // phần còn lại dàn dần ở nền
+
+        // ---- lời giải ẩn / hiện ----
+        function openSol(q, force) {
+            const s = $('.solution-box', q), b = $('.sol-btn', q);
+            if (!s) return;
+            const open = s.style.display === 'block';
+            const target = force === undefined ? !open : force;
+            if (target === open) return;
+            s.style.display = target ? 'block' : 'none';
+            if (b) b.textContent = target ? 'Ẩn lời giải' : 'Xem lời giải';
+            if (target) {
+                markSeen(q);                           // ghi nhận "đã xem lời giải" (xem trước khi làm xong thì không tính đúng)
+                if (!s.dataset.ts) {
+                    s.dataset.ts = '1';
+                    s.classList.remove('tex2jax_ignore');
+                    typesetNow(s);
+                } else initMedia();
+            }
+        }
+        let allOpen = false;
+        $('#btnAll').addEventListener('click', () => {
+            if (!allOpen) {
+                const risky = tracked.filter(q => q.dataset.ans && !(P[q.id] && P[q.id].st) && $('.solution-box', q));
+                if (risky.length && !confirm('Còn ' + risky.length + ' câu chưa làm xong. Xem lời giải bây giờ thì các câu đó sẽ được ghi nhận là "đã xem lời giải trước" và không tính đúng. Tiếp tục?')) return;
+            }
+            allOpen = !allOpen;
+            $$('.q').forEach(q => openSol(q, allOpen));
+            $('#btnAll').textContent = allOpen ? '🙈 Ẩn tất cả lời giải' : '👁 Hiện tất cả lời giải';
+        });
+
+        // ---- so khớp đáp án ----
+        function norm(s) { return s.replace(/\u2212/g, '-').replace(/,/g, '.').replace(/\s+/g, ''); }
+        function sameAns(a, b) {
+            a = norm(a); b = norm(b);
+            if (a === '' || b === '') return false;
+            if (a === b) return true;
+            const x = Number(a), y = Number(b);
+            return isFinite(x) && isFinite(y) && Math.abs(x - y) < 1e-9;
+        }
+
+        // =====================================================================
+        // TIẾN ĐỘ HỌC TẬP: lưu localStorage · thử lại một lần · tự đánh giá · tổng kết
+        //   Mỗi câu có một bản ghi P[id]:
+        //     st   kết quả hiện tại: c1 đúng ngay lần đầu | c2 đúng sau khi thử lại | cr đúng khi làm lại
+        //                            w sai | p đúng một phần (Đ/S) | sv xem lời giải trước khi làm xong
+        //                            ok / near / no  (tự luận: làm được / gần đúng / chưa)
+        //     n    số lần nộp trong lượt hiện tại (0..2)     first  kết quả của lượt làm đầu tiên
+        //     v    đã xem lời giải trong lượt này             sv     đã từng xem lời giải trước khi làm
+        //     rd   số lần làm lại      rv  cờ "Ôn lại"        sn     (tự luận) đã xem lời giải
+        //     bad  (TN) các phương án đã chọn sai   tf  (Đ/S) lựa chọn hiện tại   k  số ý đúng   txt  (TLN) câu trả lời
+        // =====================================================================
+        const GOOD = ['c1', 'c2', 'cr', 'ok'];
+        const FB = {
+            c1: ['correct', '✔ Chính xác — đúng ngay lần đầu'],
+            c2: ['correct', '✔ Đúng (sau khi thử lại)'],
+            cr: ['correct', '✔ Đúng (khi làm lại)'],
+            w: ['wrong', '✘ Chưa đúng'],
+            p: ['partial', ''],
+            sv: ['partial', '👁 Em đã xem lời giải trước nên câu này không tính đúng']
+        };
+        const BADGE = { c1: '🥇 Đúng ngay lần đầu', c2: 'Đúng ở lần 2', cr: 'Đúng khi làm lại', w: 'Sai', p: 'Đúng một phần',
+                        sv: 'Đã xem lời giải trước', ok: '✔ Làm được', near: '~ Gần đúng', no: '✘ Chưa làm được' };
+        const BCLS = { c1: 'correct', c2: 'correct', cr: 'correct', ok: 'correct', w: 'wrong', no: 'wrong', p: 'partial', near: 'partial', sv: 'partial' };
+        const KIND_NAME = { mc: 'Trắc nghiệm', tf: 'Đúng/Sai', short: 'Trả lời ngắn', essay: 'Tự luận' };
+
+        function mk(tag, cls, html) {
+            const e = document.createElement(tag);
+            if (cls) e.className = cls;
+            if (html) e.innerHTML = html;
+            if (tag === 'button') e.type = 'button';
+            return e;
+        }
+        function kindOf(q) {
+            if (q.dataset.ans) return q.dataset.kind;                 // mc | tf | short: có đáp án để chấm
+            return $('.solution-box', q) ? 'essay' : '';              // có lời giải mà không chấm được -> tự đánh giá; không có -> bỏ qua
+        }
+        const qs = $$('.q');
+        const tracked = qs.filter(q => kindOf(q));
+
+        // ---- lưu trữ (khóa theo nội dung bài: đổi đề/đáp án thì tiến độ cũ tự bỏ) ----
+        function hash(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+        const LS_KEY = 'tex2html.lesson.' + hash(document.title + '|' + tracked.map(q =>
+            q.id + ':' + kindOf(q) + ':' + (q.dataset.ans || '') + $$('.tfrow', q).map(w => w.dataset.ans.charAt(0)).join('')).join('|'));
+        let P = {}, lsOK = true;
+        function load() {
+            let raw = null;
+            try { raw = localStorage.getItem(LS_KEY); } catch (e) { lsOK = false; return; }
+            try { const o = JSON.parse(raw || 'null'); if (o && o.q) P = o.q; } catch (e) { P = {}; }
+            const ids = new Set(tracked.map(q => q.id));
+            Object.keys(P).forEach(k => { if (!ids.has(k)) delete P[k]; });
+        }
+        function save() {
+            try {
+                if (Object.keys(P).length) localStorage.setItem(LS_KEY, JSON.stringify({ v: 1, t: Date.now(), q: P }));
+                else localStorage.removeItem(LS_KEY);
+            } catch (e) { lsOK = false; }
+            const w = $('#lsWarn'); if (w) w.hidden = lsOK;
+        }
+        function W(q) { return P[q.id] || (P[q.id] = { n: 0, st: '' }); }      // lấy (hoặc tạo) bản ghi để ghi
+
+        // ---- bổ sung nút / khung cho từng câu ----
+        function enhance(q) {
+            const kind = kindOf(q), tools = $('.qtools', q), eh = $('.eh', q);
+            if (eh) eh.appendChild(mk('span', 'stt'));
+            if (kind === 'tf') { const c = mk('button', 'tf-chk', 'Kiểm tra'); c.disabled = true; $('.opts', q).appendChild(c); }
+            if (kind === 'essay') {
+                const rd = mk('button', 'redo-btn', '↺ Làm lại'); rd.hidden = true; tools.appendChild(rd);
+                const rate = mk('div', 'rate', '<span class="rq">Sau khi xem lời giải, em tự đánh giá nhé:</span>' +
+                    '<button type="button" class="rb ok" data-r="ok">✔ Em làm được</button>' +
+                    '<button type="button" class="rb near" data-r="near">~ Gần đúng</button>' +
+                    '<button type="button" class="rb no" data-r="no">✘ Chưa</button>');
+                rate.hidden = true; q.appendChild(rate);
+            }
+            tools.appendChild(mk('button', 'rv-btn', '🔖 Ôn lại'));
+        }
+
+        // ---- vẽ lại giao diện một câu từ bản ghi (dùng cả khi mở lại trang) ----
+        function paint(q) {
+            const kind = kindOf(q), r = P[q.id] || {}, st = r.st || '', n = r.n || 0;
+            q.classList.remove('s-correct', 's-wrong', 's-partial');
+            if (st) q.classList.add('s-' + BCLS[st]);
+            const badge = $('.stt', q); if (badge) badge.textContent = BADGE[st] || '';
+            const rv = $('.rv-btn', q);
+            if (rv) { rv.classList.toggle('on', !!r.rv); rv.textContent = r.rv ? '🔖 Đã đánh dấu ôn lại' : '🔖 Ôn lại'; }
+            const redo = $('.redo-btn', q); if (redo) redo.hidden = !st;
+            if (kind === 'essay') {
+                $('.rate', q).hidden = !(r.sn || st);
+                $$('.rb', q).forEach(b => b.classList.toggle('on', b.dataset.r === st));
+                return;
+            }
+            const ans = q.dataset.ans, total = $$('.tfrow', q).length;
+            if (kind === 'mc') {
+                $$('.opt', q).forEach(o => {
+                    const bad = (r.bad || []).indexOf(o.dataset.k) >= 0;
+                    o.classList.toggle('wrong', bad);
+                    o.classList.toggle('correct', o.dataset.k === ans && (!!st || !!r.v));
+                    o.classList.toggle('locked', !!st || bad);
+                });
+            } else if (kind === 'tf') {
+                const tf = r.tf || {}, rows = $$('.tfrow', q);
+                rows.forEach(row => {
+                    const sel = tf[row.dataset.k], a = row.dataset.ans;
+                    row.classList.remove('r-ok', 'r-bad');
+                    if (st) row.classList.add(sel === a ? 'r-ok' : 'r-bad');       // chỉ lộ đúng/sai từng ý khi đã xong
+                    $$('.tfb button', row).forEach(b => {
+                        const v = b.dataset.v;
+                        b.disabled = !!st;
+                        b.classList.toggle('sel', !st && sel === v);
+                        b.classList.toggle('correct', !!st && v === a);
+                        b.classList.toggle('wrong', !!st && sel === v && v !== a);
+                    });
+                });
+                const chk = $('.tf-chk', q);
+                chk.hidden = !!st;
+                chk.disabled = !rows.every(row => tf[row.dataset.k]);
+                chk.textContent = n >= 1 ? 'Kiểm tra lại' : 'Kiểm tra';
+            } else if (kind === 'short') {
+                const inp = $('.sans', q), chk = $('.chk', q), ta = $('.true-ans', q);
+                const right = sameAns(r.txt || '', ans);
+                inp.value = r.txt || '';
+                inp.readOnly = !!st;
+                inp.classList.remove('correct', 'wrong');
+                if (st) inp.classList.add(right ? 'correct' : 'wrong'); else if (n >= 1) inp.classList.add('wrong');
+                chk.disabled = !!st;
+                chk.textContent = n >= 1 && !st ? 'Kiểm tra lại' : 'Kiểm tra';
+                ta.hidden = !(st && !right);
+                ta.textContent = 'Đáp án đúng: ' + ans;
+            }
+            const fb = $('.fb', q);
+            let cls = '', txt = '';
+            if (st) {
+                cls = FB[st][0]; txt = FB[st][1];
+                if (st === 'p') txt = '½ Đúng ' + r.k + '/' + total + ' ý';
+            } else if (r.v) {
+                cls = 'partial'; txt = 'Em đã xem lời giải — câu này sẽ không được tính đúng.';
+            } else if (n >= 1) {
+                cls = 'wrong';
+                txt = kind === 'tf' ? 'Mới đúng ' + r.k + '/' + total + ' ý — em xem lại rồi chọn lại một lần nữa nhé.'
+                                    : 'Chưa đúng — em thử lại một lần nữa nhé.';
+            }
+            fb.textContent = txt;
+            fb.className = 'fb' + (cls ? ' f-' + cls : '');
+        }
+
+        // ---- xem lời giải ----
+        function markSeen(q) {
+            const kind = kindOf(q);
+            if (!kind) return;
+            const r = W(q);
+            if (kind === 'essay') r.sn = 1;
+            else if (!r.st && !r.v) { r.v = 1; if (!r.rd) r.sv = 1; r.rv = 1; }     // xem lời giải trước khi làm xong
+            else return;
+            save(); paint(q); refresh();
+        }
+
+        // ---- nộp bài: mỗi câu được thử tối đa 2 lần, đáp án chỉ lộ sau lần sai thứ hai ----
+        function goodSt(r) { return r.rd ? 'cr' : (r.n === 1 ? 'c1' : 'c2'); }
+        function finishQ(q, st) {
+            const r = W(q);
+            r.st = st;
+            if (!r.first) r.first = st;
+            r.rv = GOOD.indexOf(st) >= 0 ? 0 : 1;                      // làm chưa tốt -> tự đánh dấu "Ôn lại"
+            save(); paint(q); refresh();
+        }
+        function answerMC(q, val) {
+            const r = W(q);
+            if (r.st || (r.bad || []).indexOf(val) >= 0) return;
+            const ok = val === q.dataset.ans;
+            r.n = (r.n || 0) + 1;
+            r.bad = r.bad || [];
+            if (!ok) r.bad.push(val);
+            if (r.v) { r.pick = val; finishQ(q, 'sv'); return; }
+            if (ok) { r.pick = val; finishQ(q, goodSt(r)); return; }
+            if (r.n >= 2) { r.pick = val; finishQ(q, 'w'); return; }
+            save(); paint(q); refresh();
+        }
+        function pickTF(q, row, val) {
+            const r = W(q);
+            if (r.st) return;
+            r.tf = r.tf || {};
+            r.tf[row.dataset.k] = val;
+            save(); paint(q);
+        }
+        function checkTF(q) {
+            const r = W(q), rows = $$('.tfrow', q);
+            if (r.st || !r.tf || !rows.every(w => r.tf[w.dataset.k])) return;
+            r.n = (r.n || 0) + 1;
+            r.k = rows.filter(w => r.tf[w.dataset.k] === w.dataset.ans).length;
+            if (r.v) { finishQ(q, 'sv'); return; }
+            if (r.k === rows.length) { finishQ(q, goodSt(r)); return; }
+            if (r.n >= 2) { finishQ(q, r.k === 0 ? 'w' : 'p'); return; }
+            save(); paint(q); refresh();
+        }
+        function checkShort(q) {
+            const r = W(q);
+            if (r.st) return;
+            const inp = $('.sans', q);
+            if (norm(inp.value) === '') { inp.focus(); return; }
+            r.txt = inp.value.trim();
+            r.n = (r.n || 0) + 1;
+            if (r.v) { finishQ(q, 'sv'); return; }
+            if (sameAns(r.txt, q.dataset.ans)) { finishQ(q, goodSt(r)); return; }
+            if (r.n >= 2) { finishQ(q, 'w'); return; }
+            save(); paint(q); refresh();
+            inp.focus(); inp.select();                                 // sai lần 1: cho nhập lại
+        }
+        function rateQ(q, v) {                                         // tự luận: ok | near | no
+            const r = W(q);
+            r.sn = 1;
+            r.st = v;
+            if (!r.first) r.first = v;
+            r.rv = v === 'ok' ? 0 : 1;
+            save(); paint(q); refresh();
+        }
+        function toggleRv(q) { const r = W(q); r.rv = r.rv ? 0 : 1; save(); paint(q); refresh(); }
+        function redoQ(q) {                                            // làm lại: xóa lượt hiện tại, giữ lịch sử (lần đầu, đã xem lời giải, số lần làm lại)
+            const o = P[q.id] || {};
+            P[q.id] = { n: 0, st: '', first: o.first || '', sv: o.sv || 0, rd: (o.rd || 0) + 1, rv: o.rv || 0 };
+            openSol(q, false);
+            save(); paint(q); refresh();
+        }
+
+        // ---- thống kê ----
+        function tally(list) {
+            const s = { n: list.length, done: 0, good: 0, first: 0, retry: 0, sv: 0, redo: 0, rev: 0, todo: 0, ok: 0, near: 0, no: 0 };
+            list.forEach(q => {
+                const r = P[q.id] || {}, st = r.st || '';
+                if (r.rv) s.rev++;
+                if (r.sv) s.sv++;
+                if (!st) { s.todo++; return; }
+                s.done++;
+                if (GOOD.indexOf(st) >= 0) s.good++; else s.redo++;
+                if (r.first === 'c1') s.first++; else if (st === 'c2' || st === 'cr') s.retry++;
+                if (st === 'ok' || st === 'near' || st === 'no') s[st]++;
+            });
+            return s;
+        }
+        function wrongList(list) { return list.filter(q => { const r = P[q.id]; return r && r.st && GOOD.indexOf(r.st) < 0; }); }
+
+        // ---- bộ lọc ----
+        let flt = 'all';
+        const redoSet = new Set();                                     // các câu vừa bấm "làm lại câu sai" (chỉ trong phiên)
+        const FLT = {
+            all: () => true,
+            todo: q => !(P[q.id] && P[q.id].st),
+            rev: q => !!(P[q.id] && P[q.id].rv),
+            redo: q => redoSet.has(q.id)
+        };
+        function applyFilter() {
+            const on = flt !== 'all', f = FLT[flt] || FLT.all;
+            qs.forEach(q => { q.hidden = on && !(kindOf(q) && f(q)); });
+            $$('.lz').forEach(z => { z.hidden = on && !$$('.q', z).some(q => !q.hidden); });
+            const shown = qs.filter(q => !q.hidden).length;
+            $('#fltNote').hidden = !on;
+            $('#fltTxt').textContent = shown ? 'Đang lọc: ' + shown + ' câu' : 'Không có câu nào thuộc mục này.';
+            want($$('.lz').filter(z => !z.hidden), true);
+        }
+        function setFilter(v) {
+            if (v === 'redo' && !$('#fltSel option[value="redo"]')) { const o = mk('option'); o.value = 'redo'; $('#fltSel').appendChild(o); }
+            flt = v; $('#fltSel').value = v;
+            refresh();
+            applyFilter();
+        }
+        function jumpTo(el) {
+            pendingJump = el;
+            el.scrollIntoView({ block: 'start' });
+            want($$('.lz').filter(x => x.contains(el) || el.contains(x)), true);
+            setTimeout(() => { pendingJump = null; }, 2500);
+        }
+        function redoWrong(list) {
+            const l = wrongList(list);
+            if (!l.length) return;
+            l.forEach(q => { redoQ(q); redoSet.add(q.id); });
+            setFilter('redo');
+            window.scrollTo(0, 0);
+            jumpTo(l[0]);
+        }
+        function resetAll() {
+            if (!confirm('Xóa toàn bộ tiến độ của bài giảng này trên trình duyệt?')) return;
+            P = {}; redoSet.clear();
+            tracked.forEach(q => { openSol(q, false); paint(q); });
+            allOpen = false; $('#btnAll').textContent = '👁 Hiện tất cả lời giải';
+            save();
+            setFilter('all');
+        }
+
+        // ---- tổng kết theo dạng + cuối bài ----
+        function buildGroups() {
+            const out = [];
+            $$('.dang').forEach(d => {
+                const l = $$('.q', d).filter(q => kindOf(q)), db = d.querySelector(':scope > .db');
+                if (!l.length || !db) return;
+                const no = $('.dno', d), tt = $('.dtt', d), label = no ? no.textContent : 'Dạng';
+                const g = { i: out.length, id: d.id, label: label, qs: l, sum: mk('div', 'dsum'),
+                            nameHtml: label + (tt && tt.innerHTML.trim() ? '. ' + tt.innerHTML : '') };
+                db.appendChild(g.sum);
+                out.push(g);
+            });
+            const loose = tracked.filter(q => !q.closest('.dang'));
+            [['Ví dụ ngoài các dạng', loose.filter(q => !q.classList.contains('ex'))],
+             ['Bài tập luyện tập', loose.filter(q => q.classList.contains('ex'))]].forEach(p => {
+                if (p[1].length) out.push({ i: out.length, id: '', label: p[0], nameHtml: p[0], qs: p[1], sum: null });
+            });
+            return out;
+        }
+        const CARDS = [['done', 'Đã làm'], ['good', 'Đúng'], ['first', 'Đúng ngay lần đầu'], ['retry', 'Đúng sau thử lại'],
+                       ['sv', 'Xem lời giải trước'], ['redo', 'Cần làm lại'], ['todo', 'Chưa làm']];
+        function buildSummary() {
+            const sec = mk('section', 'sumsec');
+            sec.id = 'summary';
+            sec.innerHTML = '<h2 class="hd hd1">📊 Tổng kết</h2><p class="sline" id="sline"></p>' +
+                '<div class="sgrid">' + CARDS.map(c => '<div class="scard"><b data-s="' + c[0] + '">0</b><span>' + c[1] + '</span></div>').join('') + '</div>' +
+                '<h3 class="hd hd2">Theo dạng</h3>' +
+                '<div class="swrap"><table class="stab"><thead><tr><th>Dạng</th><th>Đã làm</th><th>Đúng</th><th>Cần ôn</th></tr></thead><tbody></tbody></table></div>' +
+                '<h3 class="hd hd2">Theo loại câu</h3><ul class="skind" id="skind"></ul>' +
+                '<div class="sbtns"><button type="button" class="dbtn" data-act="redo-all" id="sbRedo">🔁 Làm lại câu sai</button>' +
+                '<button type="button" class="dbtn" data-act="show-rev" id="sbRev">🔖 Xem câu cần ôn</button>' +
+                '<button type="button" class="dbtn" data-act="reset">🗑 Xóa tiến độ</button></div>' +
+                '<p class="snote">Tiến độ được lưu ngay trên trình duyệt này; mở lại bài giảng sẽ làm tiếp được. ' +
+                'Tự luận tính là đúng khi em tự đánh giá ✔. Câu xem lời giải trước khi làm xong không tính đúng.</p>';
+            const tb = $('tbody', sec);
+            groups.forEach(g => {
+                const tr = mk('tr', '', '<td>' + (g.id ? '<a href="#' + g.id + '" data-go="' + g.id + '">' + g.nameHtml + '</a>' : g.nameHtml) + '</td><td></td><td></td><td></td>');
+                tb.appendChild(tr); g.row = tr;
+            });
+            $('#content').appendChild(sec);
+            $('#toc').insertAdjacentHTML('beforeend', '<a class="l1" href="#summary">📊 Tổng kết</a>');
+            return sec;
+        }
+        function updateGroup(g) {
+            const s = tally(g.qs);
+            if (g.sum) {
+                g.sum.innerHTML = '<b>' + g.label + '</b><span>đã làm ' + s.done + '/' + s.n + ' · đúng ' + s.good + (s.rev ? ' · cần ôn ' + s.rev : '') + '</span>' +
+                    (s.redo ? '<button type="button" class="dbtn" data-act="redo-g" data-g="' + g.i + '">🔁 Làm lại câu sai (' + s.redo + ')</button>' : '');
+            }
+            const c = g.row.cells;
+            c[1].textContent = s.done + '/' + s.n; c[2].textContent = s.good; c[3].textContent = s.rev;
+        }
+        function refresh() {
+            const s = tally(tracked);
+            $('#ptxt').textContent = 'Đã làm ' + s.done + '/' + s.n + ' · đúng ' + s.good;
+            $('#pfill').style.width = (s.n ? Math.round(100 * s.done / s.n) : 0) + '%';
+            const lab = { todo: 'Chưa làm (' + s.todo + ')', rev: 'Cần ôn lại (' + s.rev + ')', redo: 'Đang làm lại (' + redoSet.size + ')' };
+            Object.keys(lab).forEach(k => { const o = $('#fltSel option[value="' + k + '"]'); if (o) o.textContent = lab[k]; });
+            groups.forEach(updateGroup);
+            $$('[data-s]', sumEl).forEach(b => { b.textContent = b.dataset.s === 'done' ? s.done + '/' + s.n : s[b.dataset.s]; });
+            $('#sline').textContent = s.done === s.n
+                ? '🎉 Em đã làm hết ' + s.n + ' câu, đúng ' + s.good + '.' + (s.redo ? ' Còn ' + s.redo + ' câu cần làm lại.' : ' Giỏi lắm!')
+                : 'Em đã làm ' + s.done + '/' + s.n + ' câu, đúng ' + s.good + '. Còn ' + s.todo + ' câu chưa làm.';
+            $('#skind').innerHTML = Object.keys(KIND_NAME).map(k => {
+                const l = tracked.filter(q => kindOf(q) === k);
+                if (!l.length) return '';
+                const t = tally(l);
+                return '<li><b>' + KIND_NAME[k] + ':</b> đã làm ' + t.done + '/' + t.n +
+                    (k === 'essay' ? ' · ✔ ' + t.ok + ' · ~ ' + t.near + ' · ✘ ' + t.no : ' · đúng ' + t.good + ' (ngay lần đầu ' + t.first + ')') + '</li>';
+            }).join('');
+            const br = $('#sbRedo'); br.textContent = '🔁 Làm lại câu sai (' + s.redo + ')'; br.disabled = !s.redo;
+            $('#sbRev').textContent = '🔖 Xem câu cần ôn (' + s.rev + ')';
+        }
+
+        // ---- khởi tạo ----
+        load();
+        tracked.forEach(enhance);
+        $('#content').insertAdjacentHTML('afterbegin', '<div class="fltnote" id="fltNote" hidden><span id="fltTxt"></span>' +
+            '<button type="button" class="dbtn" data-act="flt-all">Hiện tất cả</button></div>');
+        const groups = tracked.length ? buildGroups() : [];
+        const sumEl = tracked.length ? buildSummary() : null;
+        if (tracked.length) {
+            tracked.forEach(paint);
+            $('#prow').hidden = false;
+            $('#btnSum').hidden = false;
+            refresh();
+            want([sumEl], false);                                      // dàn chữ toán cho tên dạng trong bảng tổng kết
+        }
+        if (!lsOK) $('#lsWarn').hidden = false;
+        $('#btnSum').addEventListener('click', () => { if (sumEl) jumpTo(sumEl); });
+        $('#fltSel').addEventListener('change', e => { flt = e.target.value; applyFilter(); window.scrollTo(0, 0); });
+
+        function doAct(a) {
+            const act = a.dataset.act;
+            if (act === 'redo-g') redoWrong(groups[+a.dataset.g].qs);
+            else if (act === 'redo-all') redoWrong(tracked);
+            else if (act === 'show-rev') { setFilter('rev'); const f = tracked.find(q => !q.hidden); if (f) jumpTo(f); else window.scrollTo(0, 0); }
+            else if (act === 'flt-all') setFilter('all');
+            else if (act === 'reset') resetAll();
+        }
+
+        document.addEventListener('click', e => {
+            const t = e.target;
+            const go = t.closest('[data-go]');
+            if (go) {
+                e.preventDefault();
+                const el = document.getElementById(go.dataset.go);
+                if (el) { if (flt !== 'all') setFilter('all'); jumpTo(el); }
+                return;
+            }
+            const act = t.closest('[data-act]');
+            if (act) { doAct(act); return; }
+            const sb = t.closest('.sol-btn');
+            if (sb) { openSol(sb.closest('.q')); return; }
+            const q = t.closest('.q');
+            if (!q || !kindOf(q)) return;
+            if (t.closest('.redo-btn')) { redoQ(q); return; }
+            if (t.closest('.rv-btn')) { toggleRv(q); return; }
+            const rb = t.closest('.rb');
+            if (rb) { rateQ(q, rb.dataset.r); return; }
+            if (!q.dataset.ans) return;
+            const opt = t.closest('.opt');
+            if (opt && q.dataset.kind === 'mc' && !opt.classList.contains('static')) { answerMC(q, opt.dataset.k); return; }
+            const tb = t.closest('.tfb button');
+            if (tb) { pickTF(q, tb.closest('.tfrow'), tb.dataset.v); return; }
+            if (t.closest('.tf-chk')) { checkTF(q); return; }
+            if (t.closest('.chk')) checkShort(q);
+        });
+        document.addEventListener('keydown', e => {
+            const t = e.target;
+            if ((e.key === 'Enter' || e.key === ' ') && t.classList && t.classList.contains('opt') && !t.classList.contains('static')) {
+                e.preventDefault();
+                const q = t.closest('.q[data-ans]');
+                if (q) answerMC(q, t.dataset.k);
+            } else if (e.key === 'Enter' && t.classList && t.classList.contains('sans')) {
+                checkShort(t.closest('.q'));
+            }
+        });
+        document.addEventListener('input', e => {                      // gõ lại sau khi sai lần 1 thì bỏ viền đỏ
+            const t = e.target;
+            if (t.classList && t.classList.contains('sans')) {
+                const q = t.closest('.q'), r = q && P[q.id];
+                if (!(r && r.st)) t.classList.remove('wrong');
+            }
+        });
+
+        // ---- mục lục ----
+        const drawer = $('#drawer'), veil = $('#veil');
+        let tocDone = false;
+        function toc(open) {
+            drawer.classList.toggle('open', open);
+            veil.classList.toggle('open', open);
+            if (open && !tocDone) { tocDone = true; typesetNow($('#toc')); }
+        }
+        $('#btnToc').addEventListener('click', () => toc(true));
+        $('#btnTocClose').addEventListener('click', () => toc(false));
+        veil.addEventListener('click', () => toc(false));
+        $('#toc').addEventListener('click', e => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            e.preventDefault();
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+            toc(false);
+            if (el) jumpTo(el);
+        });
+        ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, () => { pendingJump = null; }, { passive: true }));
+
+        // ---- lên đầu trang ----
+        const up = $('#toTop');
+        window.addEventListener('scroll', () => { up.hidden = window.scrollY < 600; }, { passive: true });
+        up.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+<script>
+(function () {
+    var PW = "0987473509";
+    var unlocked = false, pending = null, box = null, inp = null, err = null;
+    var RE_ALL = /(tất cả|toàn bộ)/i, RE_SOL = /(lời giải|đáp án)/i;
+
+    function isGate(b) {
+        if (b.closest('.sol-btn, .sol-all, .show-all-sol, #showAllSol, [data-act="sol-all"]')) return true;
+        var t = (b.textContent || '');
+        return RE_ALL.test(t) && RE_SOL.test(t);
+    }
+    function build() {
+        if (box) return;
+        box = document.createElement('div');
+        box.className = 'lz-lock';
+        box.setAttribute('role', 'dialog');
+        box.setAttribute('aria-modal', 'true');
+        box.innerHTML = '<div class="lz-lock-box"><h4>🔒 Mở khóa lời giải</h4>' +
+            '<p>Nhập mật khẩu của giáo viên để xem lời giải.</p>' +
+            '<input type="password" autocomplete="off" placeholder="Mật khẩu…">' +
+            '<div class="lz-lock-err"></div>' +
+            '<div class="lz-lock-btns"><button type="button" class="cancel">Hủy</button><button type="button" class="ok">Mở khóa</button></div></div>';
+        document.body.appendChild(box);
+        inp = box.querySelector('input');
+        err = box.querySelector('.lz-lock-err');
+        box.querySelector('.ok').onclick = submit;
+        box.querySelector('.cancel').onclick = close;
+        box.addEventListener('click', function (e) { if (e.target === box) close(); });
+        inp.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') { e.preventDefault(); submit(); }
+            else if (e.key === 'Escape') { e.preventDefault(); close(); }
+        });
+    }
+    function open(btn) {
+        build();
+        pending = btn;
+        inp.value = ''; inp.classList.remove('bad'); err.textContent = '';
+        box.classList.add('open');
+        setTimeout(function () { inp.focus(); }, 30);
+    }
+    function close() { if (box) box.classList.remove('open'); pending = null; }
+    function submit() {
+        if (inp.value.trim() === PW) {
+            unlocked = true;
+            var b = pending;
+            close();
+            if (b && document.contains(b)) b.click();          // mở luôn lời giải học sinh vừa bấm
+        } else {
+            err.textContent = 'Mật khẩu không đúng!';
+            inp.classList.remove('bad'); void inp.offsetWidth; inp.classList.add('bad');
+            inp.select();
+        }
+    }
+    // pha bắt (capture) chạy TRƯỚC các trình xử lý của trang nên chặn được cả nút gắn trực tiếp
+    document.addEventListener('click', function (e) {
+        if (unlocked || !e.target || !e.target.closest) return;
+        var b = e.target.closest('button, a, [role="button"], input[type="button"]');
+        if (!b || !isGate(b)) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        open(b);
+    }, true);
+})();
+</script>
+</body>
+</html>
